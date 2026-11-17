@@ -93,7 +93,7 @@ const PRODUCTS = [
     name:"Quarter-Zip Sweatshirt",
     description:"Quarter-zip sweatshirt featuring the Statistical Sciences circular seal.",
     price:null,
-    image:"images/sweater-option.jpeg",
+    image: "images/quarterzip.webp",
     colours:["Navy","White","Charcoal","Maroon","Black","Sports Grey"],
     sizes:["S","M","L","XL","2XL"],
     sizeStatus:"provisional"
