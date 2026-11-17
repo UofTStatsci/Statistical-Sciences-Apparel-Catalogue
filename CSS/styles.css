@@ -1,42 +1,59 @@
 
-/* ==========================================
+/* =====================================================
    STATISTICAL SCIENCES APPAREL CATALOGUE
    University of Toronto
-   ========================================== */
+   Version 2.0 — Expanded Apparel Collection
+   ===================================================== */
 
-/* 1. DESIGN SYSTEM */
+
+/* =====================================================
+   1. DESIGN SYSTEM
+   ===================================================== */
 
 :root {
   --uoft-blue: #002a5c;
   --uoft-blue-dark: #001b40;
+  --uoft-blue-light: #eaf0f7;
   --uoft-yellow: #ffd433;
 
   --text-primary: #172b4d;
   --text-secondary: #596779;
+  --text-muted: #718096;
 
   --background: #ffffff;
-  --background-light: #f5f7fa;
+  --background-light: #f6f8fb;
   --background-soft: #edf2f8;
 
   --border: #dce3eb;
-  --shadow: 0 8px 28px rgba(0, 31, 70, 0.08);
+  --border-dark: #c8d3e0;
 
+  --shadow-small: 0 3px 12px rgba(0, 31, 70, 0.05);
+  --shadow-medium: 0 12px 32px rgba(0, 31, 70, 0.09);
+
+  --radius-small: 6px;
   --radius: 10px;
+  --radius-large: 16px;
+
   --container-width: 1200px;
   --header-height: 76px;
 
   --transition: 0.2s ease;
 }
 
-/* 2. RESET AND BASE STYLES */
 
-* {
+/* =====================================================
+   2. RESET AND BASE
+   ===================================================== */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 95px;
+  scroll-padding-top: 100px;
 }
 
 body {
@@ -46,6 +63,7 @@ body {
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--background);
+  -webkit-font-smoothing: antialiased;
 }
 
 body.cart-open {
@@ -91,15 +109,19 @@ img {
 }
 
 .eyebrow {
-  margin: 0 0 8px;
+  margin: 0 0 9px;
   color: var(--uoft-blue);
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
-/* 3. SPLASH SCREEN */
+
+/* =====================================================
+   3. SPLASH SCREEN
+   White background / original transparent blue seal
+   ===================================================== */
 
 .splash-screen {
   position: fixed;
@@ -149,7 +171,10 @@ img {
   }
 }
 
-/* 4. HEADER AND NAVIGATION */
+
+/* =====================================================
+   4. SITE HEADER
+   ===================================================== */
 
 .site-header {
   position: sticky;
@@ -157,9 +182,11 @@ img {
   z-index: 100;
 
   height: var(--header-height);
+
   color: #ffffff;
   background: var(--uoft-blue);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .header-inner {
@@ -179,18 +206,19 @@ img {
 .brand-title {
   font-size: 1.2rem;
   font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .brand-subtitle {
-  margin-top: 3px;
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
+  margin-top: 4px;
+  font-size: 0.64rem;
+  letter-spacing: 0.09em;
 }
 
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 30px;
 }
 
 .site-nav a,
@@ -198,6 +226,10 @@ img {
   color: #ffffff;
   font-size: 0.9rem;
   font-weight: 600;
+}
+
+.site-nav a {
+  transition: color var(--transition);
 }
 
 .site-nav a:hover {
@@ -228,6 +260,7 @@ img {
   padding: 0 5px;
 
   border-radius: 50%;
+
   color: var(--uoft-blue);
   background: var(--uoft-yellow);
 
@@ -235,7 +268,10 @@ img {
   font-weight: 700;
 }
 
-/* 5. BUTTONS */
+
+/* =====================================================
+   5. BUTTONS
+   ===================================================== */
 
 .button {
   display: inline-flex;
@@ -247,7 +283,7 @@ img {
   padding: 11px 22px;
 
   border: 1px solid transparent;
-  border-radius: 7px;
+  border-radius: var(--radius-small);
 
   font-size: 0.9rem;
   font-weight: 700;
@@ -256,11 +292,16 @@ img {
   transition:
     background var(--transition),
     color var(--transition),
+    border-color var(--transition),
     transform var(--transition);
 }
 
 .button:hover {
   transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0);
 }
 
 .button-primary {
@@ -279,27 +320,30 @@ img {
 }
 
 .button-outline:hover {
-  background: var(--background-soft);
+  background: var(--uoft-blue-light);
 }
 
-/* 6. HERO */
+
+/* =====================================================
+   6. HERO
+   ===================================================== */
 
 .hero {
   overflow: hidden;
-  background:
-    linear-gradient(
-      115deg,
-      #ffffff 0%,
-      #f4f7fb 58%,
-      #e4eaf3 100%
-    );
+
+  background: linear-gradient(
+    115deg,
+    #ffffff 0%,
+    #f4f7fb 58%,
+    #e4eaf3 100%
+  );
 }
 
 .hero-content {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
-  gap: 48px;
+  gap: 50px;
 
   min-height: 430px;
   padding-block: 70px;
@@ -311,6 +355,7 @@ img {
 
 .hero h1 {
   margin: 0 0 20px;
+
   color: var(--uoft-blue);
   font-size: clamp(2.2rem, 4vw, 3.5rem);
   line-height: 1.12;
@@ -318,8 +363,9 @@ img {
 }
 
 .hero-description {
-  max-width: 550px;
+  max-width: 560px;
   margin: 0 0 28px;
+
   color: var(--text-secondary);
   font-size: 1.05rem;
 }
@@ -332,16 +378,16 @@ img {
   min-height: 300px;
   padding: 24px;
 
-  border-radius: 16px;
-  background:
-    linear-gradient(
-      135deg,
-      #102f5a,
-      #002a5c 55%,
-      #001a3a
-    );
+  border-radius: var(--radius-large);
 
-  box-shadow: var(--shadow);
+  background: linear-gradient(
+    135deg,
+    #102f5a,
+    #002a5c 55%,
+    #001a3a
+  );
+
+  box-shadow: var(--shadow-medium);
 }
 
 .hero-visual-inner {
@@ -354,7 +400,7 @@ img {
   min-height: 250px;
 
   border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 10px;
+  border-radius: var(--radius);
 
   color: #ffffff;
   text-align: center;
@@ -373,22 +419,26 @@ img {
   text-transform: uppercase;
 }
 
-/* 7. INFORMATION NOTICE */
+
+/* =====================================================
+   7. REQUEST INFORMATION NOTICE
+   ===================================================== */
 
 .notice-section {
-  padding: 28px 0 12px;
-  background: var(--background);
+  padding: 30px 0 12px;
+  background: #ffffff;
 }
 
 .notice {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
+  gap: 17px;
 
-  padding: 22px 26px;
+  padding: 23px 27px;
 
   border: 1px solid var(--border);
   border-radius: var(--radius);
+
   background: var(--background-light);
 }
 
@@ -396,12 +446,13 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 26px;
+  flex: 0 0 27px;
 
-  width: 26px;
-  height: 26px;
+  width: 27px;
+  height: 27px;
 
   border-radius: 50%;
+
   color: #ffffff;
   background: var(--uoft-blue);
 
@@ -410,13 +461,13 @@ img {
 }
 
 .notice-content h2 {
-  margin: 0 0 5px;
+  margin: 0 0 6px;
   color: var(--uoft-blue);
   font-size: 1rem;
 }
 
 .notice-content p {
-  margin: 0 0 6px;
+  margin: 0 0 8px;
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
@@ -425,66 +476,121 @@ img {
   margin-bottom: 0;
 }
 
-/* 8. SECTIONS */
+
+/* =====================================================
+   8. PRODUCT SECTION
+   ===================================================== */
 
 .products-section {
-  padding: 70px 0 90px;
+  padding: 70px 0 95px;
 }
 
 .section-heading {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 24px;
+  gap: 25px;
 
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
 .section-heading h2 {
   margin: 0;
+
   color: var(--uoft-blue);
-  font-size: clamp(1.7rem, 3vw, 2.25rem);
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .section-description {
   max-width: 360px;
   margin: 0;
+
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
-/* 9. PRODUCT GRID */
+.catalogue-introduction {
+  max-width: 850px;
+  margin-bottom: 35px;
+}
+
+.catalogue-introduction p {
+  margin: 0 0 10px;
+  color: var(--text-secondary);
+  font-size: 0.94rem;
+}
+
+
+/* =====================================================
+   9. PRODUCT CATEGORY HEADINGS
+   ===================================================== */
+
+.catalogue-category {
+  grid-column: 1 / -1;
+
+  margin: 30px 0 3px !important;
+  padding-bottom: 13px;
+
+  border-bottom: 2px solid var(--uoft-blue);
+
+  color: var(--uoft-blue) !important;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.catalogue-category:first-child {
+  margin-top: 0 !important;
+}
+
+
+/* =====================================================
+   10. PRODUCT GRID
+   ===================================================== */
 
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  align-items: stretch;
+  gap: 25px;
 }
 
 .product-card {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 
   border: 1px solid var(--border);
   border-radius: var(--radius);
+
   background: #ffffff;
+  box-shadow: var(--shadow-small);
 
   transition:
     transform var(--transition),
-    box-shadow var(--transition);
+    box-shadow var(--transition),
+    border-color var(--transition);
 }
 
 .product-card:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow);
+  border-color: var(--border-dark);
+  box-shadow: var(--shadow-medium);
 }
+
+
+/* =====================================================
+   11. PRODUCT IMAGES
+   ===================================================== */
 
 .product-image {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  min-height: 260px;
+  min-height: 270px;
   padding: 25px;
 
   background: var(--background-light);
@@ -492,7 +598,7 @@ img {
 
 .product-image img {
   width: 100%;
-  height: 240px;
+  height: 245px;
   object-fit: contain;
 }
 
@@ -502,10 +608,11 @@ img {
   justify-content: center;
 
   width: 100%;
-  height: 240px;
+  height: 245px;
+  padding: 24px;
 
   border: 1px dashed #c4cfdd;
-  border-radius: 8px;
+  border-radius: var(--radius-small);
 
   color: var(--uoft-blue);
   background: #e9eef5;
@@ -515,34 +622,76 @@ img {
   text-align: center;
 }
 
+
+/* =====================================================
+   12. PRODUCT INFORMATION
+   ===================================================== */
+
 .product-details {
-  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  padding: 23px;
 }
 
 .product-title {
   margin: 0 0 6px;
+
   color: var(--uoft-blue);
-  font-size: 1.15rem;
+  font-size: 1.13rem;
+  line-height: 1.35;
+}
+
+.product-sku {
+  margin: 0 0 12px;
+  color: var(--text-muted);
+  font-size: 0.76rem;
 }
 
 .product-description {
-  min-height: 44px;
-  margin: 0 0 20px;
+  margin: 0 0 17px;
+
   color: var(--text-secondary);
-  font-size: 0.88rem;
+  font-size: 0.87rem;
+  line-height: 1.55;
 }
+
+.product-price {
+  margin: 0 0 3px;
+
+  color: var(--uoft-blue);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.product-price-note {
+  margin: 0 0 20px;
+
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+
+/* =====================================================
+   13. PRODUCT OPTIONS
+   ===================================================== */
 
 .product-options {
   display: grid;
   gap: 15px;
+
+  margin-top: auto;
 }
 
 .option-group {
   display: grid;
-  gap: 6px;
+  gap: 7px;
 }
 
 .option-group label {
+  color: var(--text-primary);
   font-size: 0.82rem;
   font-weight: 700;
 }
@@ -550,30 +699,44 @@ img {
 .option-group select,
 .option-group input {
   width: 100%;
-  min-height: 42px;
-  padding: 9px 11px;
+  min-height: 44px;
+  padding: 10px 12px;
 
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-small);
+
   color: var(--text-primary);
   background: #ffffff;
+
+  font-size: 0.9rem;
+}
+
+.option-group select:focus,
+.option-group input:focus {
+  border-color: var(--uoft-blue);
+  outline: 2px solid rgba(0, 42, 92, 0.15);
 }
 
 .product-card .button {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 21px;
 }
 
 .loading-products {
   grid-column: 1 / -1;
+  padding: 40px 0;
+
   color: var(--text-secondary);
   text-align: center;
 }
 
-/* 10. HOW IT WORKS */
+
+/* =====================================================
+   14. HOW IT WORKS
+   ===================================================== */
 
 .how-section {
-  padding: 70px 0 85px;
+  padding: 75px 0 90px;
   background: var(--background-light);
 }
 
@@ -584,33 +747,41 @@ img {
 }
 
 .step-card {
-  padding: 26px 22px;
+  padding: 27px 23px;
+
   border: 1px solid var(--border);
   border-radius: var(--radius);
+
   background: #ffffff;
 }
 
 .step-number {
   display: block;
   margin-bottom: 18px;
+
   color: var(--uoft-blue);
-  font-size: 1.65rem;
+  font-size: 1.7rem;
   font-weight: 800;
 }
 
 .step-card h3 {
   margin: 0 0 9px;
+
   color: var(--uoft-blue);
   font-size: 1rem;
 }
 
 .step-card p {
   margin: 0;
+
   color: var(--text-secondary);
   font-size: 0.88rem;
 }
 
-/* 11. CART OVERLAY */
+
+/* =====================================================
+   15. CART OVERLAY
+   ===================================================== */
 
 .cart-overlay {
   position: fixed;
@@ -620,7 +791,10 @@ img {
   background: rgba(0, 17, 42, 0.58);
 }
 
-/* 12. SLIDE-OUT CART */
+
+/* =====================================================
+   16. SLIDE-OUT CART
+   ===================================================== */
 
 .cart-panel {
   position: fixed;
@@ -631,11 +805,12 @@ img {
   display: flex;
   flex-direction: column;
 
-  width: min(100%, 520px);
+  width: min(100%, 540px);
   height: 100vh;
   height: 100dvh;
 
   background: #ffffff;
+
   box-shadow: -12px 0 35px rgba(0, 0, 0, 0.16);
 
   transform: translateX(105%);
@@ -657,12 +832,14 @@ img {
   justify-content: space-between;
   gap: 16px;
 
-  padding: 24px 28px;
+  padding: 25px 29px;
+
   border-bottom: 1px solid var(--border);
 }
 
 .cart-header h2 {
   margin: 0;
+
   color: var(--uoft-blue);
   font-size: 1.5rem;
 }
@@ -676,10 +853,11 @@ img {
   height: 38px;
 
   border: 1px solid var(--border);
-  border-radius: 6px;
-  background: #ffffff;
+  border-radius: var(--radius-small);
 
+  background: #ffffff;
   color: var(--uoft-blue);
+
   font-size: 1.7rem;
   line-height: 1;
 }
@@ -691,12 +869,13 @@ img {
 .cart-content {
   flex: 1;
   overflow-y: auto;
-  padding: 24px 28px 36px;
+
+  padding: 25px 29px 38px;
 }
 
 .cart-items {
   display: grid;
-  gap: 15px;
+  gap: 16px;
 }
 
 .empty-cart {
@@ -705,24 +884,32 @@ img {
   text-align: center;
 }
 
+
+/* =====================================================
+   17. CART ITEMS
+   ===================================================== */
+
 .cart-item {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 14px;
 
-  padding-bottom: 16px;
+  padding-bottom: 17px;
+
   border-bottom: 1px solid var(--border);
 }
 
 .cart-item-title {
-  margin: 0 0 4px;
+  margin: 0 0 5px;
+
   color: var(--uoft-blue);
   font-size: 0.95rem;
   font-weight: 700;
 }
 
 .cart-item-meta {
-  margin: 0;
+  margin: 0 0 5px;
+
   color: var(--text-secondary);
   font-size: 0.82rem;
 }
@@ -738,14 +925,15 @@ img {
   align-items: center;
   justify-content: center;
 
-  width: 30px;
-  height: 30px;
+  width: 31px;
+  height: 31px;
 
   border: 1px solid var(--border);
-  border-radius: 5px;
-  background: #ffffff;
+  border-radius: var(--radius-small);
 
+  background: #ffffff;
   color: var(--uoft-blue);
+
   font-weight: 700;
 }
 
@@ -760,7 +948,8 @@ img {
 }
 
 .remove-item {
-  padding: 5px;
+  padding: 5px 0;
+
   border: 0;
   background: transparent;
 
@@ -773,13 +962,18 @@ img {
   color: #6c1520;
 }
 
+
+/* =====================================================
+   18. CART SUMMARY
+   ===================================================== */
+
 .cart-summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  margin: 20px 0;
-  padding: 15px 0;
+  margin: 22px 0 10px;
+  padding: 16px 0;
 
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -787,7 +981,22 @@ img {
   font-size: 0.95rem;
 }
 
-/* 13. CUSTOMER FORM */
+.cart-price-summary {
+  margin-bottom: 25px;
+  padding: 14px 16px !important;
+
+  border-radius: var(--radius-small);
+  background: var(--background-light);
+
+  color: var(--uoft-blue) !important;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   19. CUSTOMER INFORMATION
+   ===================================================== */
 
 .form-section {
   padding-top: 8px;
@@ -796,6 +1005,7 @@ img {
 .form-section h3,
 .submit-section h3 {
   margin: 0 0 18px;
+
   color: var(--uoft-blue);
   font-size: 1.1rem;
 }
@@ -803,13 +1013,13 @@ img {
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 17px;
 }
 
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
 }
 
 .form-field-full {
@@ -831,11 +1041,12 @@ img {
   width: 100%;
   padding: 11px 12px;
 
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-small);
 
   color: var(--text-primary);
   background: #ffffff;
+
   font-size: 0.9rem;
 }
 
@@ -851,23 +1062,29 @@ img {
   outline: 2px solid rgba(0, 42, 92, 0.15);
 }
 
-/* 14. REQUEST SUBMISSION */
+
+/* =====================================================
+   20. REQUEST SUBMISSION
+   ===================================================== */
 
 .submit-section {
   margin-top: 30px;
-  padding-top: 24px;
+  padding-top: 25px;
+
   border-top: 1px solid var(--border);
 }
 
 .submit-section p {
   margin: 0 0 14px;
+
   color: var(--text-secondary);
   font-size: 0.88rem;
 }
 
 .submission-note {
-  padding: 12px 14px;
-  border-radius: 6px;
+  padding: 13px 15px;
+
+  border-radius: var(--radius-small);
   background: var(--background-light);
 }
 
@@ -875,20 +1092,26 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  margin-top: 20px;
+
+  margin-top: 21px;
 }
 
 .request-feedback {
   min-height: 20px;
-  margin-top: 14px !important;
+  margin-top: 15px !important;
+
   color: var(--uoft-blue) !important;
   font-weight: 700;
 }
 
-/* 15. FOOTER */
+
+/* =====================================================
+   21. FOOTER
+   ===================================================== */
 
 .site-footer {
-  padding: 35px 0;
+  padding: 38px 0;
+
   color: #ffffff;
   background: var(--uoft-blue);
 }
@@ -920,16 +1143,20 @@ img {
 
 .footer-information p {
   margin: 0 0 8px;
+
   font-size: 0.78rem;
   opacity: 0.85;
 }
 
-/* 16. TABLET */
+
+/* =====================================================
+   22. TABLET
+   ===================================================== */
 
 @media (max-width: 950px) {
 
   .hero-content {
-    gap: 25px;
+    gap: 28px;
   }
 
   .product-grid {
@@ -942,7 +1169,10 @@ img {
 
 }
 
-/* 17. MOBILE */
+
+/* =====================================================
+   23. MOBILE
+   ===================================================== */
 
 @media (max-width: 650px) {
 
@@ -951,7 +1181,10 @@ img {
   }
 
   .container {
-    width: min(calc(100% - 32px), var(--container-width));
+    width: min(
+      calc(100% - 32px),
+      var(--container-width)
+    );
   }
 
   .brand-title {
@@ -985,15 +1218,15 @@ img {
   }
 
   .hero-visual {
-    min-height: 200px;
+    min-height: 205px;
   }
 
   .hero-visual-inner {
-    min-height: 160px;
+    min-height: 165px;
   }
 
   .notice {
-    padding: 18px;
+    padding: 19px;
   }
 
   .products-section {
@@ -1008,12 +1241,26 @@ img {
     margin-top: 12px;
   }
 
+  .catalogue-introduction {
+    margin-bottom: 25px;
+  }
+
+  .catalogue-category {
+    font-size: 1.35rem;
+  }
+
   .product-grid {
     grid-template-columns: 1fr;
+    gap: 22px;
   }
 
   .product-image {
-    min-height: 220px;
+    min-height: 230px;
+  }
+
+  .product-image img,
+  .product-placeholder {
+    height: 225px;
   }
 
   .how-section {
@@ -1044,7 +1291,10 @@ img {
 
 }
 
-/* 18. REDUCED MOTION */
+
+/* =====================================================
+   24. REDUCED MOTION
+   ===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
