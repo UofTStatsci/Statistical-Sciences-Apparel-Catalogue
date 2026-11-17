@@ -413,12 +413,18 @@ function renderProducts() {
       makeElement("h3","catalogue-category",category)
     );
 
-    PRODUCTS.filter(p => p.category === category)
-      .forEach(product => {
-        elements.productGrid.appendChild(
-          createProductCard(product)
-        );
-      });
+ PRODUCTS
+  .filter(p => p.category === category)
+  .sort((a, b) => {
+    if (a.price === null) return 1;
+    if (b.price === null) return -1;
+    return a.price - b.price;
+  })
+  .forEach(product => {
+    elements.productGrid.appendChild(
+      createProductCard(product)
+    );
+  });
   });
 }
 
