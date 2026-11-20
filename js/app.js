@@ -1155,30 +1155,51 @@ function generateRequestText() {
   return lines.join("\n");
 }
 
+
 function emailRequest(event) {
   event.preventDefault();
+
   if (!validateRequest()) return;
 
-  if (CONFIG.recipientEmail.includes("REPLACE_WITH")) {
+  const recipient = CONFIG.recipientEmail.trim();
+
+  if (
+    !recipient ||
+    recipient.includes("REPLACE_WITH")
+  ) {
     showFeedback(
       "Please configure the receiving email address."
     );
     return;
   }
 
-  const mailto =
-    `mailto:${CONFIG.recipientEmail}` +
-    `?subject=${encodeURIComponent(generateEmailSubject())}` +
-    `&body=${encodeURIComponent(generateRequestText())}`;
+  const subject = generateEmailSubject();
+  const body = generateRequestText();
 
-  showFeedback(
-    mailto.length > 1800
-      ? "This request is long. If your email application does not open correctly, use Copy Request Details."
-      : "Your email application should open. Review the message and click Send."
+  const outlookUrl =
+    "https://outlook.office.com/mail/deeplink/compose" +
+    "?to=" + encodeURIComponent(recipient) +
+    "&subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(body);
+
+  const newWindow = window.open(
+    outlookUrl,
+    "_blank",
+    "noopener,noreferrer"
   );
 
-  window.location.href = mailto;
+  if (!newWindow) {
+    showFeedback(
+      "Outlook could not open. Please use Copy Request Details instead."
+    );
+    return;
+  }
+
+  showFeedback(
+    "Outlook has been opened in a new tab. Please review your request and click Send."
+  );
 }
+
 
 async function copyRequest() {
   if (!validateRequest()) return;
