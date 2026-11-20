@@ -70,7 +70,7 @@ const PRODUCTS = [
     image: SWEATER_IMAGES.Navy,
     colourImages: SWEATER_IMAGES,
     colours: Object.keys(SWEATER_IMAGES),
-    sizes: ["S","M","L","XL","2XL"],
+    sizes: ["XS","S","M","L","XL","2XL","3XL"],
     sizeStatus: "provisional"
   },
 
