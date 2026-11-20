@@ -10,7 +10,7 @@
 /* 1. CONFIGURATION */
 
 const CONFIG = {
-  recipientEmail: "REPLACE_WITH_YOUR_EMAIL@utoronto.ca",
+  recipientEmail: "communications.statistics@utoronto.ca",
   emailSubject: "Statistical Sciences Apparel Request",
   storageKey: "statsci-apparel-cart-v5",
   splashDuration: 2600
