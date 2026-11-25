@@ -2,14 +2,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Statistical Sciences Apparel Catalogue | University of Toronto</title>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    Statistical Sciences Apparel Catalogue | University of Toronto
+  </title>
 
   <meta
     name="description"
-    content="Explore University of Toronto Statistical Sciences sweatshirts, jackets and vests. Compare styles, colours and sizes, and request apparel."
+    content="Explore University of Toronto Statistical Sciences sweatshirts, jackets and vests. Compare styles, colours and sizes, and submit an apparel request."
   >
 
   <meta name="theme-color" content="#002A5C">
@@ -29,104 +36,16 @@
 
   <!-- STYLESHEET AND JAVASCRIPT -->
 
-  <link rel="stylesheet" href="CSS/styles.css">
-  <script src="js/app.js?v=8" defer></script>
+  <link
+    rel="stylesheet"
+    href="CSS/styles.css?v=10"
+  >
 
-  <style>
-    .hero-visual {
-      background: transparent;
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-    }
+  <script
+    src="js/app.js?v=10"
+    defer
+  ></script>
 
-    .hero-department-logo {
-      display: block;
-      width: min(100%, 360px);
-      height: auto;
-      object-fit: contain;
-    }
-
-    .category-navigation {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 25px 0 35px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid #dce3eb;
-    }
-
-    .category-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 11px 20px;
-      border: 1px solid #002a5c;
-      border-radius: 6px;
-      background: #ffffff;
-      color: #002a5c;
-      font-size: .9rem;
-      font-weight: 700;
-      transition: background .2s, color .2s;
-    }
-
-    .category-link:hover {
-      background: #002a5c;
-      color: #ffffff;
-    }
-
-    .category-count {
-      font-size: .75rem;
-      font-weight: 400;
-      opacity: .8;
-    }
-
-    .catalogue-category {
-      scroll-margin-top: 10px;
-    }
-
-    .submission-steps {
-      margin: 12px 0 18px;
-      padding-left: 22px;
-      color: #596779;
-      font-size: .88rem;
-    }
-
-    .submission-steps li {
-      margin-bottom: 7px;
-    }
-
-    .submission-privacy {
-      font-size: .78rem !important;
-      color: #596779;
-    }
-
-    .request-copy-fallback {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #c8d3e0;
-      border-radius: 6px;
-      font-size: .85rem;
-      resize: vertical;
-    }
-
-    @media (max-width: 650px) {
-      .hero-department-logo {
-        width: min(65%, 240px);
-      }
-
-      .category-navigation {
-        gap: 8px;
-      }
-
-      .category-link {
-        flex: 1;
-        padding: 10px 12px;
-        font-size: .8rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -140,6 +59,7 @@
     class="splash-screen"
     aria-hidden="true"
   >
+
     <img
       src="images/statsci-circular-logo.png"
       alt=""
@@ -147,6 +67,7 @@
       width="260"
       height="260"
     >
+
   </div>
 
   <!-- ==========================================
@@ -154,6 +75,7 @@
        ========================================== -->
 
   <header class="site-header">
+
     <div class="container header-inner">
 
       <a
@@ -161,6 +83,7 @@
         class="site-brand"
         aria-label="Statistical Sciences Apparel Catalogue home"
       >
+
         <span class="brand-title">
           Statistical Sciences
         </span>
@@ -168,12 +91,18 @@
         <span class="brand-subtitle">
           UNIVERSITY OF TORONTO
         </span>
+
       </a>
 
-      <nav class="site-nav" aria-label="Main navigation">
+      <nav
+        class="site-nav"
+        aria-label="Main navigation"
+      >
 
         <a href="#home">Home</a>
+
         <a href="#products">Products</a>
+
         <a href="#how-it-works">How It Works</a>
 
         <button
@@ -184,14 +113,27 @@
           aria-controls="cart-panel"
           aria-expanded="false"
         >
-          <span class="cart-label">Your Request</span>
-          <span aria-hidden="true">&#128722;</span>
-          <span id="cart-count" class="cart-count">0</span>
+
+          <span class="cart-label">
+            Your Request
+          </span>
+
+          <span aria-hidden="true">
+            &#128722;
+          </span>
+
+          <span
+            id="cart-count"
+            class="cart-count"
+            aria-live="polite"
+          >0</span>
+
         </button>
 
       </nav>
 
     </div>
+
   </header>
 
   <main id="home">
@@ -200,7 +142,10 @@
          HERO SECTION
          ======================================== -->
 
-    <section class="hero" aria-labelledby="hero-title">
+    <section
+      class="hero"
+      aria-labelledby="hero-title"
+    >
 
       <div class="container hero-content">
 
@@ -223,7 +168,10 @@
             your preferred colours, sizes and quantities.
           </p>
 
-          <a href="#products" class="button button-primary">
+          <a
+            href="#products"
+            class="button button-primary"
+          >
             Explore the Collection
           </a>
 
@@ -258,7 +206,10 @@
 
         <div class="notice">
 
-          <span class="notice-icon" aria-hidden="true">i</span>
+          <span
+            class="notice-icon"
+            aria-hidden="true"
+          >i</span>
 
           <div class="notice-content">
 
@@ -310,8 +261,15 @@
         <div class="section-heading">
 
           <div>
-            <p class="eyebrow">THE COLLECTION</p>
-            <h2 id="products-title">Available Apparel</h2>
+
+            <p class="eyebrow">
+              THE COLLECTION
+            </p>
+
+            <h2 id="products-title">
+              Available Apparel
+            </h2>
+
           </div>
 
           <p class="section-description">
@@ -337,11 +295,11 @@
           </p>
 
           <p>
-            Sweatshirts and selected vests are available in
-            multiple colours. Jackets are offered in the
-            designated colour shown. Vest photographs are
-            representative and do not change when a different
-            colour is selected.
+            Sweatshirts and selected vests are available
+            in multiple colours. Jackets are offered in
+            the designated colour shown. Vest photographs
+            are representative and do not change when
+            a different colour is selected.
           </p>
 
         </div>
@@ -357,34 +315,51 @@
             href="#category-sweatshirts"
             class="category-link"
           >
+
             Sweatshirts
-            <span class="category-count">(1)</span>
+
+            <span
+              class="category-count"
+              data-category-count="Sweatshirts"
+            >(1)</span>
+
           </a>
 
           <a
             href="#category-jackets"
             class="category-link"
           >
+
             Jackets
-            <span class="category-count">(20)</span>
+
+            <span
+              class="category-count"
+              data-category-count="Jackets"
+            >(20)</span>
+
           </a>
 
           <a
             href="#category-vests"
             class="category-link"
           >
+
             Vests
-            <span class="category-count">(7)</span>
+
+            <span
+              class="category-count"
+              data-category-count="Vests"
+            >(7)</span>
+
           </a>
 
         </nav>
 
-        <!-- PRODUCT CARDS GENERATED BY APP.JS -->
+        <!-- PRODUCTS GENERATED BY JAVASCRIPT -->
 
         <div
           id="product-grid"
           class="product-grid"
-          aria-live="polite"
         >
 
           <p class="loading-products">
@@ -394,10 +369,12 @@
         </div>
 
         <noscript>
+
           <p>
             JavaScript must be enabled to browse the
             apparel catalogue and submit a request.
           </p>
+
         </noscript>
 
       </div>
@@ -419,8 +396,15 @@
         <div class="section-heading">
 
           <div>
-            <p class="eyebrow">ORDERING PROCESS</p>
-            <h2 id="how-title">How It Works</h2>
+
+            <p class="eyebrow">
+              ORDERING PROCESS
+            </p>
+
+            <h2 id="how-title">
+              How It Works
+            </h2>
+
           </div>
 
         </div>
@@ -429,7 +413,9 @@
 
           <article class="step-card">
 
-            <span class="step-number">01</span>
+            <span class="step-number">
+              01
+            </span>
 
             <h3>Explore Apparel</h3>
 
@@ -443,7 +429,9 @@
 
           <article class="step-card">
 
-            <span class="step-number">02</span>
+            <span class="step-number">
+              02
+            </span>
 
             <h3>Build Your Request</h3>
 
@@ -457,29 +445,34 @@
 
           <article class="step-card">
 
-            <span class="step-number">03</span>
+            <span class="step-number">
+              03
+            </span>
 
             <h3>Submit Your Request</h3>
 
             <p>
-              Review your selections and enter your contact
-              information. Your completed request will open
-              in Microsoft Forms, ready for you to submit.
+              Review your selections and enter your
+              contact information. Complete your
+              submission through the pre-populated
+              Microsoft Forms checkout.
             </p>
 
           </article>
 
           <article class="step-card">
 
-            <span class="step-number">04</span>
+            <span class="step-number">
+              04
+            </span>
 
             <h3>Receive Confirmation</h3>
 
             <p>
-              Following submission, you should receive an
-              automated confirmation email. The department
-              will follow up regarding final pricing,
-              availability and next steps.
+              Following submission, you should receive
+              an automated confirmation email.
+              The department will follow up regarding
+              final pricing, availability and next steps.
             </p>
 
           </article>
@@ -514,13 +507,16 @@
     aria-labelledby="cart-title"
     aria-hidden="true"
     tabindex="-1"
+    inert
   >
 
     <div class="cart-header">
 
       <div>
 
-        <p class="eyebrow">YOUR SELECTIONS</p>
+        <p class="eyebrow">
+          YOUR SELECTIONS
+        </p>
 
         <h2 id="cart-title">
           Your Apparel Request
@@ -559,14 +555,27 @@
 
         <span>Total Items</span>
 
-        <strong id="cart-total-items">0</strong>
+        <strong id="cart-total-items">
+          0
+        </strong>
 
       </div>
 
-      <!--
-        Estimated price summary is inserted
-        automatically by app.js.
-      -->
+      <div
+        id="cart-price-summary"
+        class="cart-price-summary"
+        aria-live="polite"
+        hidden
+      ></div>
+
+      <button
+        type="button"
+        id="clear-cart"
+        class="clear-cart"
+        hidden
+      >
+        Clear Request
+      </button>
 
       <!-- ======================================
            CUSTOMER INFORMATION
@@ -583,8 +592,11 @@
             <div class="form-field">
 
               <label for="customer-name">
+
                 Full Name
+
                 <span class="required">*</span>
+
               </label>
 
               <input
@@ -593,6 +605,7 @@
                 name="customer-name"
                 autocomplete="name"
                 placeholder="Your full name"
+                maxlength="150"
                 required
               >
 
@@ -601,8 +614,11 @@
             <div class="form-field">
 
               <label for="customer-email">
+
                 UofT Email Address
+
                 <span class="required">*</span>
+
               </label>
 
               <input
@@ -611,6 +627,7 @@
                 name="customer-email"
                 autocomplete="email"
                 placeholder="name@utoronto.ca"
+                maxlength="254"
                 required
               >
 
@@ -619,8 +636,11 @@
             <div class="form-field form-field-full">
 
               <label for="customer-affiliation">
+
                 Department Affiliation
+
                 <span class="required">*</span>
+
               </label>
 
               <select
@@ -671,6 +691,7 @@
                 id="customer-notes"
                 name="customer-notes"
                 rows="3"
+                maxlength="1000"
                 placeholder="Any additional information about your apparel request..."
               ></textarea>
 
@@ -681,7 +702,7 @@
         </div>
 
         <!-- ======================================
-             MICROSOFT FORMS SUBMISSION
+             REQUEST SUBMISSION
              ====================================== -->
 
         <div class="submit-section">
@@ -689,34 +710,36 @@
           <h3>Submit Your Request</h3>
 
           <p>
-            Please review all selected products, colours,
-            sizes and quantities before submitting
-            your apparel request.
+            Please review all selected products,
+            colours, sizes and quantities before
+            submitting your apparel request.
           </p>
 
           <p>
-            Prices are estimates only. The department will
-            confirm final pricing and availability before
-            any purchase is arranged.
+            Prices are estimates only. The department
+            will confirm final pricing and availability
+            before any purchase is arranged.
           </p>
 
           <div class="submission-note">
 
             <p>
-              <strong>Complete your submission</strong>
+              <strong>
+                Complete your submission
+              </strong>
             </p>
 
             <ol class="submission-steps">
 
               <li>
-                Select <strong>Submit Apparel Request</strong>
+                Select
+                <strong>Submit Apparel Request</strong>
                 below.
               </li>
 
               <li>
-                Microsoft Forms will open in a new tab
-                with your information and apparel selections
-                automatically populated.
+                Your pre-populated Microsoft Forms
+                checkout will open on this website.
               </li>
 
               <li>
@@ -726,16 +749,20 @@
 
               <li>
                 Review your information and click
-                <strong>Submit</strong> in Microsoft Forms.
+                <strong>Submit</strong>
+                within Microsoft Forms.
               </li>
 
             </ol>
 
             <p>
+
               <strong>
-                Your request is not submitted until you
-                complete the final submission in Microsoft Forms.
+                Your request is not submitted until
+                you complete the final submission
+                in Microsoft Forms.
               </strong>
+
             </p>
 
           </div>
@@ -747,25 +774,26 @@
           </p>
 
           <p>
-            If the form does not open correctly, select
-            <strong>Copy Request Details</strong>
-            to copy your selections and complete the
-            Microsoft Form manually.
+            If you experience difficulties with the
+            checkout, use the alternative form link
+            or select
+            <strong>Copy Request Details</strong>.
           </p>
 
           <p class="submission-privacy">
-            Your contact information and apparel selections
-            are transferred to Microsoft Forms using a
-            prefilled link. This information may remain
-            in your browser history. Please do not include
-            sensitive personal information in the notes field.
+            Apparel requests are processed through
+            Microsoft Forms. Your information is
+            transferred using a prefilled link and
+            may remain in browser history or logs.
+            Please do not include sensitive personal
+            information in the notes field.
           </p>
 
           <div class="submit-actions">
 
             <button
               type="submit"
-              id="email-request"
+              id="submit-request"
               class="button button-primary"
             >
               Submit Apparel Request
@@ -810,7 +838,9 @@
           Department of Statistical Sciences
         </strong>
 
-        <span>University of Toronto</span>
+        <span>
+          University of Toronto
+        </span>
 
       </div>
 
@@ -840,10 +870,156 @@
 
   </footer>
 
-  <!--
-    The enlarged product image viewer is
-    generated automatically by app.js.
-  -->
+  <!-- ==========================================
+       FULL-SCREEN PRODUCT IMAGE GALLERY
+       ========================================== -->
+
+  <dialog
+    id="product-gallery"
+    class="gallery-panel"
+    aria-labelledby="gallery-title"
+  >
+
+    <div class="gallery-header">
+
+      <h2
+        id="gallery-title"
+        class="gallery-title"
+      >
+        Product Image
+      </h2>
+
+      <button
+        type="button"
+        id="gallery-close"
+        class="gallery-close"
+        aria-label="Close image viewer"
+        autofocus
+      >
+        &times;
+      </button>
+
+    </div>
+
+    <div class="gallery-stage">
+
+      <button
+        type="button"
+        id="gallery-previous"
+        class="gallery-arrow gallery-prev"
+        aria-label="Previous image"
+        hidden
+      >
+        &#8249;
+      </button>
+
+      <img
+        id="gallery-image"
+        class="gallery-image"
+        alt=""
+      >
+
+      <button
+        type="button"
+        id="gallery-next"
+        class="gallery-arrow gallery-next"
+        aria-label="Next image"
+        hidden
+      >
+        &#8250;
+      </button>
+
+    </div>
+
+    <div class="gallery-footer">
+
+      <p
+        id="gallery-caption"
+        class="gallery-caption"
+      ></p>
+
+      <span
+        id="gallery-counter"
+        class="gallery-counter"
+        hidden
+      ></span>
+
+    </div>
+
+  </dialog>
+
+  <!-- ==========================================
+       MICROSOFT FORMS CHECKOUT MODAL
+       ========================================== -->
+
+  <dialog
+    id="checkout-modal"
+    class="checkout-panel"
+    aria-labelledby="checkout-title"
+  >
+
+    <div class="checkout-header">
+
+      <div>
+
+        <h2
+          id="checkout-title"
+          class="checkout-title"
+        >
+          Complete Your Apparel Request
+        </h2>
+
+        <p class="checkout-subtitle">
+          University of Toronto &middot; Statistical Sciences
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        id="checkout-close"
+        class="checkout-close"
+        aria-label="Close checkout"
+        autofocus
+      >
+        &times;
+      </button>
+
+    </div>
+
+    <!--
+      Microsoft Forms URL is populated dynamically
+      with the customer's complete apparel request.
+    -->
+
+    <iframe
+      id="checkout-frame"
+      class="checkout-frame"
+      title="Statistical Sciences Apparel Request"
+      src="about:blank"
+      referrerpolicy="no-referrer"
+    ></iframe>
+
+    <div class="checkout-footer">
+
+      <p>
+        Review your information and click Submit
+        in the form.
+      </p>
+
+      <a
+        id="checkout-fallback"
+        class="checkout-fallback"
+        href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=JsKqeAMvTUuQN7RtVsVSECpVX7P7Zc5FgKM5nX6wJ7ZUNTM5VjRWQkY0V05IU1c3OUE1NDFZVTZHQy4u"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Having trouble? Open form in a new tab
+      </a>
+
+    </div>
+
+  </dialog>
 
 </body>
 </html>
