@@ -1612,18 +1612,45 @@ function setupEvents() {
   document.getElementById("checkout-close")
     .addEventListener("click",closeCheckoutModal);
 
-  elements.checkout.addEventListener("close",() => {
-    document.body.classList.remove("checkout-open");
+ 
+elements.checkout.addEventListener("close", () => {
+  document.body.classList.remove("checkout-open");
 
-    elements.checkoutFrame.src = "about:blank";
+  elements.checkoutFrame.src = "about:blank";
+  elements.checkoutFallback.href = CONFIG.formUrl;
 
-    elements.checkoutFallback.href = CONFIG.formUrl;
+  const submitted = window.confirm(
+    "Have you successfully submitted your apparel request?\n\n" +
+    "Select OK to clear your cart, or Cancel to keep your selections."
+  );
 
+  if (submitted) {
+    cart = [];
+
+    saveCart();
+    renderCart();
+
+    elements.requestForm.reset();
+
+    document.getElementById(
+      "request-copy-fallback"
+    )?.remove();
+
+    document.getElementById(
+      "manual-form-link"
+    )?.remove();
+
+    closeCart();
+
+    showFeedback("");
+  } else {
     showFeedback(
-      "If you submitted your request, look for the confirmation email. " +
-      "Your cart has been retained. You can clear it when you are finished."
+      "Your selections have been retained. " +
+      "You can return to checkout when you are ready."
     );
-  });
+  }
+});
+
 
   /* KEYBOARD NAVIGATION */
 
