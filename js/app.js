@@ -1451,31 +1451,9 @@ function validateRequest() {
   return true;
 }
 
-function getRecipient() {
-  const recipient = CONFIG.recipientEmail.trim();
-
-  if (
-    !recipient ||
-    recipient.includes("REPLACE_WITH") ||
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient)
-  ) {
-    showFeedback(
-      "Please configure the receiving email address."
-    );
-
-    return null;
-  }
-
-  return recipient;
-}
-
 /* ============================================
    16. ITEMIZED EMAIL
    ============================================ */
-
-function generateEmailSubject() {
-  return `${CONFIG.emailSubject} - ${getCustomerInformation().name}`;
-}
 
 function generateRequestText() {
   const customer = getCustomerInformation();
@@ -1550,8 +1528,9 @@ function generateRequestText() {
   return lines.join("\n");
 }
 
+
 /* ============================================
-   17. OUTLOOK WEB EMAIL
+   17. MICROSOFT FORMS SUBMISSION
    ============================================ */
 
 function emailRequest(event) {
@@ -1559,66 +1538,71 @@ function emailRequest(event) {
 
   if (!validateRequest()) return;
 
-  const recipient = getRecipient();
+  const customer = getCustomerInformation();
+  const orderDetails = generateRequestText();
 
-  if (!recipient) return;
+  const formUrl = new URL(CONFIG.formUrl);
 
-  const subject = generateEmailSubject();
-  const body = generateRequestText();
+  formUrl.searchParams.set(
+    CONFIG.formFields.name,
+    customer.name
+  );
 
-  const outlookUrl =
-    "https://outlook.office.com/mail/deeplink/compose" +
-    "?to=" + encodeURIComponent(recipient) +
-    "&subject=" + encodeURIComponent(subject) +
-    "&body=" + encodeURIComponent(body);
+  formUrl.searchParams.set(
+    CONFIG.formFields.email,
+    customer.email
+  );
 
-  if (outlookUrl.length > 8000) {
+  formUrl.searchParams.set(
+    CONFIG.formFields.order,
+    orderDetails
+  );
+
+  if (formUrl.toString().length > 7500) {
     showFeedback(
-      "Your request is very long. Please use Copy Request Details and paste the request into Outlook."
+      "Your request is too long to prefill automatically. " +
+      "Please use Copy Request Details and paste your " +
+      "request into Microsoft Forms."
     );
 
     return;
   }
 
+  showFeedback(
+    "Microsoft Forms will open in a new tab. " +
+    "Review your request and click Submit to complete it."
+  );
+
   window.open(
-    outlookUrl,
+    formUrl.toString(),
     "_blank",
     "noopener,noreferrer"
   );
-
-  showFeedback(
-    "Outlook should open in a new tab. Review your request and click Send. If Outlook does not open, use Copy Request Details."
-  );
 }
 
+
+
 /* ============================================
-   18. COPY REQUEST
+   18. COPY REQUEST DETAILS
    ============================================ */
 
 async function copyRequest() {
   if (!validateRequest()) return;
 
-  const recipient = getRecipient();
-
-  if (!recipient) return;
-
-  const text = [
-    `To: ${recipient}`,
-    `Subject: ${generateEmailSubject()}`,
-    "",
-    generateRequestText()
-  ].join("\n");
+  const text = generateRequestText();
 
   try {
     await navigator.clipboard.writeText(text);
 
     showFeedback(
-      "Request copied. Paste it into an email and send it to the department."
+      "Request details copied. Paste them into " +
+      "the Complete Apparel Request field in Microsoft Forms."
     );
 
   } catch (error) {
     const fallback = makeElement(
-      "textarea", "request-copy-fallback"
+      "textarea",
+      "request-copy-fallback"
     );
 
     fallback.value = text;
@@ -1636,10 +1620,29 @@ async function copyRequest() {
     fallback.select();
 
     showFeedback(
-      "Automatic copying was unavailable. Copy the selected request text manually."
+      "Please copy the selected request details manually."
     );
   }
+
+  document.getElementById(
+    "manual-form-link"
+  )?.remove();
+
+  const link = makeElement(
+    "a",
+    "button button-outline",
+    "Open Microsoft Forms"
+  );
+
+  link.id = "manual-form-link";
+  link.href = CONFIG.formUrl;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.style.marginTop = "12px";
+
+  elements.feedback.after(link);
 }
+
 
 /* ============================================
    19. EVENTS AND ACCESSIBILITY
@@ -1671,7 +1674,7 @@ function setupEvents() {
   );
 
   if (emailButton) {
-    emailButton.textContent = "Open Request in Outlook";
+    emailButton.textContent = "Submit Apparel Request";
   }
 
   document.addEventListener("keydown", event => {
