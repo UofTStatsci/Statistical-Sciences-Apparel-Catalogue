@@ -1,14 +1,13 @@
 
 "use strict";
 
-/* ============================================
+/* ==================================================
    STATISTICAL SCIENCES APPAREL CATALOGUE
    University of Toronto
-   Version 6 — Sweatshirts, Jackets and Vests
-   ============================================ */
+   Version 10 — Integrated Microsoft Forms Checkout
+   ================================================== */
 
 /* 1. CONFIGURATION */
-
 
 const CONFIG = {
   formUrl: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=JsKqeAMvTUuQN7RtVsVSECpVX7P7Zc5FgKM5nX6wJ7ZUNTM5VjRWQkY0V05IU1c3OUE1NDFZVTZHQy4u",
@@ -20,14 +19,9 @@ const CONFIG = {
   },
 
   storageKey: "statsci-apparel-cart-v5",
-  splashDuration: 2600
+  splashDuration: 2600,
+  maxFormUrlLength: 7500
 };
-
-
-/* IMPORTANT:
-   Retain your actual receiving email address
-   when replacing this file.
-*/
 
 /* 2. SWEATSHIRT IMAGES */
 
@@ -76,9 +70,9 @@ const SIZE = {
   xs5: ["XS","S","M","L","XL","2XL","3XL","4XL","5XL"]
 };
 
-/* ============================================
+/* ==================================================
    5. COMPLETE PRODUCT CATALOGUE
-   ============================================ */
+   ================================================== */
 
 const PRODUCTS = [
 
@@ -292,7 +286,7 @@ const PRODUCTS = [
     sku: "LQO00060",
     category: "Jackets",
     name: "Clique Equinox Insulated Softshell Women's Hooded Jacket",
-    description: "Insulated softshell with water-resistant exterior, adjustable hood and secure pockets.",
+    description: "Insulated softshell with water-resistant exterior and adjustable hood.",
     price: 90,
     image: "images/clique-equinox-women.webp",
     colour: "Dark Navy",
@@ -321,27 +315,17 @@ const PRODUCTS = [
     sizes: SIZE.xs3
   },
 
-  /* ==========================================
-     VESTS
-     All supplier-listed colours are selectable.
-     Product images remain unchanged.
-     ========================================== */
+  /* VESTS */
 
   {
     id: "clique-elevation-vest",
     sku: "MQO00080",
     category: "Vests",
     name: "Clique Elevation Recycled Insulated Puffer Vest",
-    description: "Lightweight channel-quilted puffer vest with a recycled polyester water-repellent shell, secure hand and inside chest pockets, and adjustable waist drawcord.",
+    description: "Lightweight channel-quilted puffer vest with a recycled polyester water-repellent shell, secure pockets and adjustable waist drawcord.",
     price: 60,
     image: "images/clique-elevation-vest.webp",
-    colours: [
-      "Pure Slate",
-      "Black",
-      "Dark Navy",
-      "Royal Blue",
-      "Red"
-    ],
+    colours: ["Pure Slate","Black","Dark Navy","Royal Blue","Red"],
     sizes: SIZE.xs5
   },
   {
@@ -349,16 +333,10 @@ const PRODUCTS = [
     sku: "MQO00082",
     category: "Vests",
     name: "Clique Valhalla Recycled Insulated Puffer Vest",
-    description: "Channel-quilted insulated vest with a recycled ripstop nylon shell, water-repellent finish, contrast zipper and secure zippered hand and chest pockets.",
+    description: "Channel-quilted insulated vest with a recycled ripstop nylon shell, water-repellent finish, contrast zipper and secure pockets.",
     price: 66.65,
     image: "images/clique-valhalla-vest.webp",
-    colours: [
-      "Pure Slate",
-      "Black",
-      "Dark Navy",
-      "Royal Blue",
-      "Red"
-    ],
+    colours: ["Pure Slate","Black","Dark Navy","Royal Blue","Red"],
     sizes: SIZE.xs5
   },
   {
@@ -366,14 +344,10 @@ const PRODUCTS = [
     sku: "A572",
     category: "Vests",
     name: "Adidas Puffer Full-Zip Vest",
-    description: "Insulated full-zip vest constructed from recycled polyester with baffle construction, signature three-stripe detailing on the back and Adidas branding on the collar.",
+    description: "Insulated full-zip vest constructed from recycled polyester with baffle construction, three-stripe detailing and Adidas collar branding.",
     price: 98.30,
     image: "images/adidas-puffer-vest.webp",
-    colours: [
-      "Black",
-      "Grey Five",
-      "Team Navy Blue"
-    ],
+    colours: ["Black","Grey Five","Team Navy Blue"],
     sizes: SIZE.s4
   },
   {
@@ -381,13 +355,10 @@ const PRODUCTS = [
     sku: "212491",
     category: "Vests",
     name: "Columbia Powder Lite II Vest",
-    description: "Insulated vest featuring Omni-Heat thermal-reflective lining, Thermarator insulation, Omni-Shield water and stain resistance, zippered pockets and an adjustable hem.",
+    description: "Insulated vest featuring Omni-Heat thermal-reflective lining, Thermarator insulation, Omni-Shield water and stain resistance, zippered pockets and adjustable hem.",
     price: 141.05,
     image: "images/columbia-powder-vest.webp",
-    colours: [
-      "Black",
-      "Collegiate Navy"
-    ],
+    colours: ["Black","Collegiate Navy"],
     sizes: SIZE.standard
   },
   {
@@ -407,13 +378,10 @@ const PRODUCTS = [
     sku: "DF7673",
     category: "Vests",
     name: "DryFrame Dry Tech Insulated Vest",
-    description: "Wind- and water-resistant insulated vest with a durable polyester exterior, Sorona insulation, YKK zippers, reflective detailing and zippered hand pockets.",
+    description: "Wind- and water-resistant insulated vest with polyester exterior, Sorona insulation, YKK zippers, reflective detailing and zippered pockets.",
     price: 149.95,
     image: "images/dryframe-drytech-vest.webp",
-    colours: [
-      "Black",
-      "Platinum Grey"
-    ],
+    colours: ["Black","Platinum Grey"],
     sizes: SIZE.xs4
   },
   {
@@ -424,24 +392,18 @@ const PRODUCTS = [
     description: "Versatile hybrid vest featuring recycled polyester honeycomb softshell, PrimaLoft insulation, fleece interior, water-resistant finish and secure zippered pockets.",
     price: 166.65,
     image: "images/cutter-buck-evoke-vest.webp",
-    colours: [
-      "Concrete",
-      "Elemental Grey",
-      "Black",
-      "Navy Blue",
-      "Tour Blue"
-    ],
+    colours: ["Concrete","Elemental Grey","Black","Navy Blue","Tour Blue"],
     sizes: SIZE.xs5
   }
 ];
 
-/* ============================================
+/* ==================================================
    6. APPLICATION STATE
-   ============================================ */
+   ================================================== */
 
 let cart = [];
 let previousFocus = null;
-let galleryPreviousFocus = null;
+
 let galleryProduct = null;
 let galleryColour = null;
 let galleryIndex = 0;
@@ -463,25 +425,31 @@ function initialize() {
     requestForm: "request-form",
     copyRequest: "copy-request",
     feedback: "request-feedback",
-    splash: "splash-screen"
+    splash: "splash-screen",
+    gallery: "product-gallery",
+    galleryImage: "gallery-image",
+    galleryHeading: "gallery-title",
+    galleryCaption: "gallery-caption",
+    galleryCounter: "gallery-counter",
+    galleryPrevious: "gallery-previous",
+    galleryNext: "gallery-next",
+    checkout: "checkout-modal",
+    checkoutFrame: "checkout-frame",
+    checkoutFallback: "checkout-fallback"
   };
 
   Object.entries(ids).forEach(([key,id]) => {
     elements[key] = document.getElementById(id);
   });
 
+  setupSplash();
   loadCart();
   renderProducts();
   renderCart();
-  createGallery();
   setupEvents();
-  setupSplash();
 
   const year = document.getElementById("current-year");
-
-  if (year) {
-    year.textContent = new Date().getFullYear();
-  }
+  if (year) year.textContent = new Date().getFullYear();
 }
 
 /* 7. SPLASH SCREEN */
@@ -494,15 +462,24 @@ function setupSplash() {
   ).matches;
 
   window.setTimeout(
-    () => elements.splash.remove(),
+    () => elements.splash?.remove(),
     reduced ? 250 : CONFIG.splashDuration
   );
 }
 
 /* 8. HELPERS */
 
+function makeElement(tag, className = "", text) {
+  const el = document.createElement(tag);
+
+  if (className) el.className = className;
+  if (text !== undefined) el.textContent = text;
+
+  return el;
+}
+
 function getProduct(id) {
-  return PRODUCTS.find(p => p.id === id);
+  return PRODUCTS.find(product => product.id === id);
 }
 
 function getAvailableColours(product) {
@@ -511,17 +488,11 @@ function getAvailableColours(product) {
     : [product.colour];
 }
 
-function getColour(product, selected) {
-  const colours = getAvailableColours(product);
-
-  return colours.includes(selected)
-    ? selected
-    : colours[0];
-}
-
 function getProductImages(product, colour) {
   if (product.colourImages) {
-    const selected = getColour(product, colour);
+    const selected = product.colourImages[colour]
+      ? colour
+      : product.colours[0];
 
     return [{
       src: product.colourImages[selected],
@@ -533,14 +504,14 @@ function getProductImages(product, colour) {
     return product.images.filter(image => image.src);
   }
 
-  if (!product.image) return [];
-
-  return [{
-    src: product.image,
-    label: product.category === "Vests"
-      ? "Representative product image"
-      : product.colour || "Product view"
-  }];
+  return product.image
+    ? [{
+        src: product.image,
+        label: product.category === "Vests"
+          ? "Representative product image"
+          : product.colour
+      }]
+    : [];
 }
 
 function formatPrice(value) {
@@ -554,15 +525,6 @@ function formatPrice(value) {
   }).format(value);
 }
 
-function makeElement(tag, className = "", text) {
-  const el = document.createElement(tag);
-
-  if (className) el.className = className;
-  if (text !== undefined) el.textContent = text;
-
-  return el;
-}
-
 function createSelectGroup(labelText, id, values) {
   const group = makeElement("div", "option-group");
   const label = makeElement("label", "", labelText);
@@ -573,46 +535,32 @@ function createSelectGroup(labelText, id, values) {
   select.id = id;
 
   values.forEach(value => {
-    select.add(new Option(value, value));
+    select.add(new Option(value,value));
   });
 
-  group.append(label, select);
+  group.append(label,select);
 
-  return {group, select};
+  return {group,select};
 }
 
-/* ============================================
+/* ==================================================
    9. PRODUCT CATALOGUE
-   ============================================ */
+   ================================================== */
 
 function renderProducts() {
-  if (!elements.productGrid) return;
-
   elements.productGrid.replaceChildren();
 
-  const categories = [
-    "Sweatshirts",
-    "Jackets",
-    "Vests"
-  ];
-
-  categories.forEach(category => {
+  ["Sweatshirts","Jackets","Vests"].forEach(category => {
     const products = PRODUCTS
-      .filter(p => p.category === category)
-      .sort((a,b) => {
-        if (a.price === null && b.price === null) return 0;
-        if (a.price === null) return 1;
-        if (b.price === null) return -1;
-
-        return a.price - b.price;
-      });
+      .filter(product => product.category === category)
+      .sort((a,b) =>
+        (a.price ?? Infinity) - (b.price ?? Infinity)
+      );
 
     if (!products.length) return;
 
     const heading = makeElement(
-      "h3",
-      "catalogue-category",
-      category
+      "h3", "catalogue-category", category
     );
 
     heading.id = `category-${category.toLowerCase()}`;
@@ -624,12 +572,20 @@ function renderProducts() {
         createProductCard(product)
       );
     });
+
+    const count = document.querySelector(
+      `[data-category-count="${category}"]`
+    );
+
+    if (count) {
+      count.textContent = `(${products.length})`;
+    }
   });
 }
 
-/* ============================================
+/* ==================================================
    10. PRODUCT CARDS
-   ============================================ */
+   ================================================== */
 
 function createProductCard(product) {
   const card = makeElement("article", "product-card");
@@ -637,7 +593,6 @@ function createProductCard(product) {
   const details = makeElement("div", "product-details");
 
   const colours = getAvailableColours(product);
-  const hasColourChoice = colours.length > 1;
   const isVest = product.category === "Vests";
 
   let selectedColour = colours[0];
@@ -654,21 +609,6 @@ function createProductCard(product) {
     `Enlarge image of ${product.name}`
   );
 
-  const image = document.createElement("img");
-  image.loading = "lazy";
-
-  const zoom = makeElement(
-    "span", "product-zoom-label", "View larger"
-  );
-
-  zoom.setAttribute("aria-hidden", "true");
-
-  const placeholder = makeElement(
-    "div",
-    "product-placeholder",
-    product.name
-  );
-
   function updateImage() {
     const images = getProductImages(
       product, selectedColour
@@ -676,39 +616,52 @@ function createProductCard(product) {
 
     const src = images[0]?.src;
 
+    imageButton.replaceChildren();
+    imageButton.disabled = !src;
+
     if (!src) {
-      imageButton.replaceChildren(placeholder);
-      imageButton.disabled = true;
+      imageButton.appendChild(makeElement(
+        "div", "product-placeholder", product.name
+      ));
       return;
     }
 
-    imageButton.disabled = false;
+    const image = document.createElement("img");
 
+    image.loading = "lazy";
     image.alt = isVest
       ? `${product.name} — representative image`
       : `${product.name} — ${selectedColour}`;
 
-    imageButton.replaceChildren(image, zoom);
+    const zoom = makeElement(
+      "span", "product-zoom-label", "View larger"
+    );
 
-    if (image.getAttribute("src") !== src) {
-      image.src = src;
-    }
+    zoom.setAttribute("aria-hidden","true");
+
+    image.onerror = () => {
+      if (!imageButton.contains(image)) return;
+
+      imageButton.replaceChildren(makeElement(
+        "div", "product-placeholder", product.name
+      ));
+
+      imageButton.disabled = true;
+    };
+
+    imageButton.append(image,zoom);
+    image.src = src;
   }
 
-  image.onerror = () => {
-    imageButton.replaceChildren(placeholder);
-    imageButton.disabled = true;
-  };
-
   imageButton.addEventListener("click", () => {
-    openGallery(product, selectedColour);
+    openGallery(product,selectedColour);
   });
 
   imageBox.appendChild(imageButton);
   updateImage();
 
   const title = makeElement(
-    "h3", "product-title", product.name
+    "h4", "product-title", product.name
   );
 
   const sku = makeElement(
@@ -731,11 +684,11 @@ function createProductCard(product) {
       : "Estimated supplier price, before tax. Subject to confirmation."
   );
 
-  const options = makeElement("div", "product-options");
+  const options = makeElement("div","product-options");
 
-  /* COLOUR SELECTION */
+  /* COLOUR OPTIONS */
 
-  if (hasColourChoice) {
+  if (colours.length > 1) {
     const colourGroup = createSelectGroup(
       "Colour",
       `colour-${product.id}`,
@@ -750,7 +703,7 @@ function createProductCard(product) {
       "span", "product-colour-swatch"
     );
 
-    swatch.setAttribute("aria-hidden", "true");
+    swatch.setAttribute("aria-hidden","true");
 
     const colourName = makeElement(
       "span", "product-colour-name"
@@ -768,11 +721,6 @@ function createProductCard(product) {
 
       updateSwatch();
 
-      /*
-        Only sweatshirts have colour-specific images.
-        Vests retain their representative mockup.
-      */
-
       if (product.colourImages) {
         updateImage();
       }
@@ -780,20 +728,15 @@ function createProductCard(product) {
 
     updateSwatch();
 
-    swatchRow.append(swatch, colourName);
-
+    swatchRow.append(swatch,colourName);
     colourGroup.group.appendChild(swatchRow);
 
     if (isVest) {
-      const note = makeElement(
+      colourGroup.group.appendChild(makeElement(
         "p",
-        "product-price-note",
+        "representative-note",
         "Product image is representative and does not change with colour selection."
-      );
-
-      note.style.margin = "4px 0 0";
-
-      colourGroup.group.appendChild(note);
+      ));
     }
 
     options.appendChild(colourGroup.group);
@@ -804,27 +747,18 @@ function createProductCard(product) {
     );
 
     const label = makeElement(
-      "span", "", "Colour"
+      "span", "option-label", "Colour"
     );
-
-    label.style.fontSize = ".82rem";
-    label.style.fontWeight = "700";
 
     const fixedColour = makeElement(
-      "p",
-      "product-fixed-colour",
-      selectedColour
+      "p", "product-fixed-colour", selectedColour
     );
 
-    fixedColour.style.margin = "0";
-    fixedColour.style.fontSize = ".9rem";
-    fixedColour.style.fontWeight = "600";
-
-    colourGroup.append(label, fixedColour);
+    colourGroup.append(label,fixedColour);
     options.appendChild(colourGroup);
   }
 
-  /* SIZE SELECTION */
+  /* SIZE OPTIONS */
 
   const sizeGroup = createSelectGroup(
     "Size",
@@ -834,7 +768,7 @@ function createProductCard(product) {
 
   options.appendChild(sizeGroup.group);
 
-  /* QUANTITY SELECTION */
+  /* QUANTITY */
 
   const quantityGroup = makeElement(
     "div", "option-group"
@@ -859,7 +793,7 @@ function createProductCard(product) {
     quantityInput.setCustomValidity("");
   });
 
-  quantityGroup.append(quantityLabel, quantityInput);
+  quantityGroup.append(quantityLabel,quantityInput);
   options.appendChild(quantityGroup);
 
   /* ADD TO REQUEST */
@@ -914,7 +848,7 @@ function createProductCard(product) {
   if (product.sizeStatus === "provisional") {
     details.appendChild(makeElement(
       "p",
-      "product-price-note",
+      "representative-note",
       "Size availability to be confirmed."
     ));
   }
@@ -922,130 +856,42 @@ function createProductCard(product) {
   if (product.sizeNote) {
     details.appendChild(makeElement(
       "p",
-      "product-price-note",
+      "representative-note",
       product.sizeNote
     ));
   }
 
   details.appendChild(button);
-  card.append(imageBox, details);
+  card.append(imageBox,details);
 
   return card;
 }
 
-/* ============================================
-   11. FULL-SCREEN IMAGE GALLERY
-   ============================================ */
-
-function createGallery() {
-  const overlay = makeElement("div", "gallery-overlay");
-
-  overlay.id = "product-gallery";
-  overlay.hidden = true;
-
-  overlay.setAttribute("role", "dialog");
-  overlay.setAttribute("aria-modal", "true");
-  overlay.setAttribute("aria-labelledby", "gallery-title");
-
-  const panel = makeElement("div", "gallery-panel");
-  const header = makeElement("div", "gallery-header");
-
-  const heading = makeElement("h2", "gallery-title");
-  heading.id = "gallery-title";
-
-  const close = makeElement(
-    "button", "gallery-close", "×"
-  );
-
-  close.type = "button";
-  close.setAttribute("aria-label", "Close image viewer");
-
-  header.append(heading, close);
-
-  const stage = makeElement("div", "gallery-stage");
-
-  const previous = makeElement(
-    "button", "gallery-arrow gallery-prev", "‹"
-  );
-
-  previous.type = "button";
-  previous.setAttribute("aria-label", "Previous image");
-
-  const image = document.createElement("img");
-  image.className = "gallery-image";
-  image.alt = "";
-
-  const next = makeElement(
-    "button", "gallery-arrow gallery-next", "›"
-  );
-
-  next.type = "button";
-  next.setAttribute("aria-label", "Next image");
-
-  stage.append(previous, image, next);
-
-  const footer = makeElement("div", "gallery-footer");
-  const caption = makeElement("p", "gallery-caption");
-  const counter = makeElement("span", "gallery-counter");
-
-  footer.append(caption, counter);
-  panel.append(header, stage, footer);
-  overlay.appendChild(panel);
-
-  document.body.appendChild(overlay);
-
-  elements.gallery = overlay;
-  elements.galleryImage = image;
-  elements.galleryHeading = heading;
-  elements.galleryCaption = caption;
-  elements.galleryCounter = counter;
-  elements.galleryPrevious = previous;
-  elements.galleryNext = next;
-  elements.galleryClose = close;
-
-  image.onerror = () => {
-    elements.galleryCaption.textContent =
-      "Product image is currently unavailable.";
-  };
-
-  close.addEventListener("click", closeGallery);
-
-  previous.addEventListener("click", () => {
-    moveGallery(-1);
-  });
-
-  next.addEventListener("click", () => {
-    moveGallery(1);
-  });
-
-  overlay.addEventListener("click", event => {
-    if (event.target === overlay) closeGallery();
-  });
-}
+/* ==================================================
+   11. FULL-SCREEN PRODUCT IMAGE VIEWER
+   ================================================== */
 
 function openGallery(product, colour) {
-  const images = getProductImages(product, colour);
+  const images = getProductImages(product,colour);
 
   if (!images.length) return;
 
-  galleryPreviousFocus = document.activeElement;
   galleryProduct = product;
   galleryColour = colour;
   galleryIndex = 0;
 
-  elements.gallery.hidden = false;
+  renderGallery();
+
+  elements.gallery.showModal();
 
   document.body.classList.add("gallery-open");
-
-  renderGallery();
-  elements.galleryClose.focus();
 }
 
 function renderGallery() {
   if (!galleryProduct) return;
 
   const images = getProductImages(
-    galleryProduct, galleryColour
+    galleryProduct,galleryColour
   );
 
   const selected = images[galleryIndex];
@@ -1056,14 +902,14 @@ function renderGallery() {
     galleryProduct.name;
 
   elements.galleryImage.alt =
-    `${galleryProduct.name} — ${selected.label}`;
-
-  elements.galleryImage.src = selected.src;
+    `${galleryProduct.name} — ${selected.label || "Product view"}`;
 
   elements.galleryCaption.textContent =
     galleryProduct.category === "Vests"
       ? "Representative product image. Selected colour may differ."
       : selected.label || galleryColour;
+
+  elements.galleryImage.src = selected.src;
 
   elements.galleryCounter.textContent =
     `${galleryIndex + 1} of ${images.length}`;
@@ -1079,7 +925,7 @@ function moveGallery(direction) {
   if (!galleryProduct) return;
 
   const images = getProductImages(
-    galleryProduct, galleryColour
+    galleryProduct,galleryColour
   );
 
   if (images.length < 2) return;
@@ -1092,23 +938,14 @@ function moveGallery(direction) {
 }
 
 function closeGallery() {
-  if (!elements.gallery || elements.gallery.hidden) return;
-
-  elements.gallery.hidden = true;
-
-  document.body.classList.remove("gallery-open");
-
-  galleryProduct = null;
-  galleryColour = null;
-
-  if (galleryPreviousFocus?.focus) {
-    galleryPreviousFocus.focus();
+  if (elements.gallery.open) {
+    elements.gallery.close();
   }
 }
 
-/* ============================================
+/* ==================================================
    12. CART MANAGEMENT
-   ============================================ */
+   ================================================== */
 
 function getTotalQuantity() {
   return cart.reduce(
@@ -1128,17 +965,15 @@ function getCartSubtotal() {
     return sum +
       Math.round(product.price * 100) * item.quantity;
 
-  }, 0);
+  },0);
 
   return cents / 100;
 }
 
 function hasUnpricedItems() {
-  return cart.some(item => {
-    const product = getProduct(item.productId);
-
-    return product && product.price === null;
-  });
+  return cart.some(item =>
+    getProduct(item.productId)?.price === null
+  );
 }
 
 function addToCart(item) {
@@ -1161,41 +996,62 @@ function addToCart(item) {
   renderCart();
 }
 
-function changeQuantity(index, delta) {
+function changeQuantity(index,delta) {
   if (!cart[index]) return;
 
   cart[index].quantity += delta;
 
   if (cart[index].quantity <= 0) {
-    cart.splice(index, 1);
+    cart.splice(index,1);
   } else {
     cart[index].quantity = Math.min(
-      999,
-      cart[index].quantity
+      999,cart[index].quantity
     );
   }
 
   saveCart();
   renderCart();
+
+  restoreCartControlFocus(index,delta > 0 ? 1 : 0);
 }
 
 function removeFromCart(index) {
-  cart.splice(index, 1);
+  cart.splice(index,1);
 
   saveCart();
   renderCart();
+
+  const removeButtons = elements.cartItems
+    .querySelectorAll(".remove-item");
+
+  const next = removeButtons[
+    Math.min(index,removeButtons.length - 1)
+  ];
+
+  (next || elements.closeCart).focus();
+}
+
+function restoreCartControlFocus(index,buttonIndex) {
+  const rows = elements.cartItems
+    .querySelectorAll(".cart-item");
+
+  const row = rows[Math.min(index,rows.length - 1)];
+
+  const button = row?.querySelectorAll(
+    ".quantity-button"
+  )[buttonIndex];
+
+  (button || elements.closeCart).focus();
 }
 
 function renderCart() {
-  if (!elements.cartItems) return;
-
   elements.cartItems.replaceChildren();
 
   if (!cart.length) {
     elements.cartItems.appendChild(makeElement(
       "p",
       "empty-cart",
-      "Your request is empty."
+      "Your request is empty. Browse the catalogue to add apparel."
     ));
   }
 
@@ -1204,11 +1060,11 @@ function renderCart() {
 
     if (!product) return;
 
-    const row = makeElement("div", "cart-item");
+    const row = makeElement("div","cart-item");
     const info = makeElement("div");
 
     const title = makeElement(
-      "p", "cart-item-title", product.name
+      "p","cart-item-title",product.name
     );
 
     const meta = makeElement(
@@ -1234,24 +1090,24 @@ function renderCart() {
     );
 
     const remove = makeElement(
-      "button", "remove-item", "Remove"
+      "button","remove-item","Remove"
     );
 
     remove.type = "button";
 
-    remove.addEventListener("click", () => {
+    remove.addEventListener("click",() => {
       removeFromCart(index);
     });
 
-    info.append(title, meta, price, lineTotal, remove);
+    info.append(title,meta,price,lineTotal,remove);
 
     const controls = makeElement(
-      "div", "cart-item-controls"
+      "div","cart-item-controls"
     );
 
-    function quantityButton(symbol, delta, label) {
+    function quantityButton(symbol,delta,label) {
       const button = makeElement(
-        "button", "quantity-button", symbol
+        "button","quantity-button",symbol
       );
 
       button.type = "button";
@@ -1261,8 +1117,8 @@ function renderCart() {
         `${label} ${product.name}, ${item.colour}, ${item.size}`
       );
 
-      button.addEventListener("click", () => {
-        changeQuantity(index, delta);
+      button.addEventListener("click",() => {
+        changeQuantity(index,delta);
       });
 
       return button;
@@ -1275,12 +1131,12 @@ function renderCart() {
     );
 
     controls.append(
-      quantityButton("−", -1, "Decrease"),
+      quantityButton("−",-1,"Decrease"),
       count,
-      quantityButton("+", 1, "Increase")
+      quantityButton("+",1,"Increase")
     );
 
-    row.append(info, controls);
+    row.append(info,controls);
     elements.cartItems.appendChild(row);
   });
 
@@ -1289,20 +1145,9 @@ function renderCart() {
   elements.cartCount.textContent = total;
   elements.cartTotal.textContent = total;
 
-  let summary = document.getElementById(
+  const summary = document.getElementById(
     "cart-price-summary"
   );
-
-  if (!summary) {
-    summary = makeElement(
-      "div", "cart-price-summary"
-    );
-
-    summary.id = "cart-price-summary";
-
-    document.querySelector(".cart-summary")
-      ?.insertAdjacentElement("afterend", summary);
-  }
 
   summary.hidden = !cart.length;
 
@@ -1311,11 +1156,14 @@ function renderCart() {
     : hasUnpricedItems()
       ? `Priced items subtotal: ${formatPrice(getCartSubtotal())}. Other items require a quote.`
       : `Estimated subtotal: ${formatPrice(getCartSubtotal())}, before tax.`;
+
+  document.getElementById("clear-cart").hidden =
+    !cart.length;
 }
 
-/* ============================================
+/* ==================================================
    13. CART STORAGE
-   ============================================ */
+   ================================================== */
 
 function saveCart() {
   try {
@@ -1324,7 +1172,7 @@ function saveCart() {
       JSON.stringify(cart)
     );
   } catch (error) {
-    console.warn("Cart storage unavailable.", error);
+    console.warn("Cart storage unavailable.",error);
   }
 }
 
@@ -1356,23 +1204,59 @@ function loadCart() {
   }
 }
 
-/* ============================================
+function clearCart() {
+  if (!cart.length) return;
+
+  if (!window.confirm(
+    "Remove all items from your apparel request?"
+  )) return;
+
+  cart = [];
+
+  saveCart();
+  renderCart();
+
+  showFeedback("Your request has been cleared.");
+
+  elements.closeCart.focus();
+}
+
+/* ==================================================
    14. CART PANEL
-   ============================================ */
+   ================================================== */
+
+function setPageInert(value) {
+  [
+    document.querySelector(".site-header"),
+    document.querySelector("main"),
+    document.querySelector(".site-footer")
+  ].forEach(element => {
+    if (element) element.inert = value;
+  });
+}
 
 function openCart() {
+  if (elements.cartPanel.classList.contains("is-open")) {
+    return;
+  }
+
   previousFocus = document.activeElement;
 
   elements.cartOverlay.hidden = false;
+
   elements.cartPanel.classList.add("is-open");
 
+  elements.cartPanel.inert = false;
+
   elements.cartPanel.setAttribute(
-    "aria-hidden", "false"
+    "aria-hidden","false"
   );
 
   elements.openCart.setAttribute(
-    "aria-expanded", "true"
+    "aria-expanded","true"
   );
+
+  setPageInert(true);
 
   document.body.classList.add("cart-open");
 
@@ -1380,28 +1264,36 @@ function openCart() {
 }
 
 function closeCart() {
+  if (!elements.cartPanel.classList.contains("is-open")) {
+    return;
+  }
+
   elements.cartPanel.classList.remove("is-open");
 
-  elements.cartPanel.setAttribute(
-    "aria-hidden", "true"
-  );
-
   elements.openCart.setAttribute(
-    "aria-expanded", "false"
+    "aria-expanded","false"
   );
 
   elements.cartOverlay.hidden = true;
 
   document.body.classList.remove("cart-open");
 
+  setPageInert(false);
+
   if (previousFocus?.focus) {
     previousFocus.focus();
   }
+
+  elements.cartPanel.inert = true;
+
+  elements.cartPanel.setAttribute(
+    "aria-hidden","true"
+  );
 }
 
-/* ============================================
+/* ==================================================
    15. CUSTOMER INFORMATION
-   ============================================ */
+   ================================================== */
 
 function getCustomerInformation() {
   return {
@@ -1424,9 +1316,7 @@ function getCustomerInformation() {
 }
 
 function showFeedback(message) {
-  if (elements.feedback) {
-    elements.feedback.textContent = message;
-  }
+  elements.feedback.textContent = message;
 }
 
 function validateRequest() {
@@ -1439,21 +1329,21 @@ function validateRequest() {
     showFeedback(
       "Please complete the required contact information."
     );
-
     return false;
   }
 
   if (!getCustomerInformation().name) {
     showFeedback("Please enter your full name.");
+    document.getElementById("customer-name").focus();
     return false;
   }
 
   return true;
 }
 
-/* ============================================
-   16. ITEMIZED EMAIL
-   ============================================ */
+/* ==================================================
+   16. GENERATE ITEMIZED REQUEST
+   ================================================== */
 
 function generateRequestText() {
   const customer = getCustomerInformation();
@@ -1528,75 +1418,106 @@ function generateRequestText() {
   return lines.join("\n");
 }
 
+/* ==================================================
+   17. MICROSOFT FORMS INTEGRATION
+   ================================================== */
 
-/* ============================================
-   17. MICROSOFT FORMS SUBMISSION
-   ============================================ */
-
-function emailRequest(event) {
-  event.preventDefault();
-
-  if (!validateRequest()) return;
-
+function buildFormUrl(includeOrder = true) {
   const customer = getCustomerInformation();
-  const orderDetails = generateRequestText();
 
-  const formUrl = new URL(CONFIG.formUrl);
+  const url = new URL(CONFIG.formUrl);
 
-  formUrl.searchParams.set(
+  url.searchParams.set(
     CONFIG.formFields.name,
     customer.name
   );
 
-  formUrl.searchParams.set(
+  url.searchParams.set(
     CONFIG.formFields.email,
     customer.email
   );
 
-  formUrl.searchParams.set(
-    CONFIG.formFields.order,
-    orderDetails
-  );
+  if (includeOrder) {
+    url.searchParams.set(
+      CONFIG.formFields.order,
+      generateRequestText()
+    );
+  }
 
-  if (formUrl.toString().length > 7500) {
+  return url.toString();
+}
+
+function submitRequest(event) {
+  event.preventDefault();
+
+  if (!validateRequest()) return;
+
+  const formUrl = buildFormUrl();
+
+  if (formUrl.length > CONFIG.maxFormUrlLength) {
     showFeedback(
       "Your request is too long to prefill automatically. " +
-      "Please use Copy Request Details and paste your " +
-      "request into Microsoft Forms."
+      "Use Copy Request Details to complete the form manually."
     );
 
     return;
   }
 
-  showFeedback(
-    "Microsoft Forms will open in a new tab. " +
-    "Review your request and click Submit to complete it."
-  );
+  openCheckoutModal(formUrl);
+}
 
-  window.open(
-    formUrl.toString(),
-    "_blank",
-    "noopener,noreferrer"
+/* ==================================================
+   18. EMBEDDED CHECKOUT MODAL
+   ================================================== */
+
+function openCheckoutModal(formUrl) {
+  if (elements.checkout.open) return;
+
+  const embeddedUrl = new URL(formUrl);
+
+  embeddedUrl.searchParams.set("embed","true");
+
+  elements.checkoutFallback.href = formUrl;
+
+  elements.checkout.showModal();
+
+  document.body.classList.add("checkout-open");
+
+  elements.checkoutFrame.src = embeddedUrl.toString();
+
+  showFeedback(
+    "Review your information in Microsoft Forms and click Submit."
   );
 }
 
+function closeCheckoutModal() {
+  if (elements.checkout.open) {
+    elements.checkout.close();
+  }
+}
 
-
-/* ============================================
-   18. COPY REQUEST DETAILS
-   ============================================ */
+/* ==================================================
+   19. COPY REQUEST FALLBACK
+   ================================================== */
 
 async function copyRequest() {
   if (!validateRequest()) return;
 
   const text = generateRequestText();
 
+  document.getElementById(
+    "request-copy-fallback"
+  )?.remove();
+
+  document.getElementById(
+    "manual-form-link"
+  )?.remove();
+
   try {
     await navigator.clipboard.writeText(text);
 
     showFeedback(
-      "Request details copied. Paste them into " +
-      "the Complete Apparel Request field in Microsoft Forms."
+      "Request copied. Paste it into the Complete Apparel Request field in Microsoft Forms."
     );
 
   } catch (error) {
@@ -1605,14 +1526,14 @@ async function copyRequest() {
       "request-copy-fallback"
     );
 
+    fallback.id = "request-copy-fallback";
     fallback.value = text;
     fallback.readOnly = true;
     fallback.rows = 12;
-    fallback.style.width = "100%";
 
-    document.querySelector(
-      ".request-copy-fallback"
-    )?.remove();
+    fallback.setAttribute(
+      "aria-label","Complete apparel request to copy"
+    );
 
     elements.feedback.after(fallback);
 
@@ -1620,105 +1541,151 @@ async function copyRequest() {
     fallback.select();
 
     showFeedback(
-      "Please copy the selected request details manually."
+      "Automatic copying was unavailable. Copy the selected request details manually."
     );
   }
 
-  document.getElementById(
-    "manual-form-link"
-  )?.remove();
-
   const link = makeElement(
     "a",
-    "button button-outline",
+    "button button-outline manual-form-link",
     "Open Microsoft Forms"
   );
 
   link.id = "manual-form-link";
-  link.href = CONFIG.formUrl;
+  link.href = buildFormUrl(false);
   link.target = "_blank";
   link.rel = "noopener noreferrer";
-  link.style.marginTop = "12px";
 
-  elements.feedback.after(link);
+  const fallback = document.getElementById(
+    "request-copy-fallback"
+  );
+
+  (fallback || elements.feedback).after(link);
 }
 
-
-/* ============================================
-   19. EVENTS AND ACCESSIBILITY
-   ============================================ */
+/* ==================================================
+   20. EVENTS AND ACCESSIBILITY
+   ================================================== */
 
 function setupEvents() {
   elements.openCart.addEventListener(
-    "click", openCart
+    "click",openCart
   );
 
   elements.closeCart.addEventListener(
-    "click", closeCart
+    "click",closeCart
   );
 
   elements.cartOverlay.addEventListener(
-    "click", closeCart
+    "click",closeCart
   );
 
   elements.requestForm.addEventListener(
-    "submit", emailRequest
+    "submit",submitRequest
   );
 
   elements.copyRequest.addEventListener(
-    "click", copyRequest
+    "click",copyRequest
   );
 
-  const emailButton = document.getElementById(
-    "email-request"
+  document.getElementById("clear-cart")
+    .addEventListener("click",clearCart);
+
+  /* PRODUCT GALLERY */
+
+  document.getElementById("gallery-close")
+    .addEventListener("click",closeGallery);
+
+  elements.galleryPrevious.addEventListener(
+    "click",() => moveGallery(-1)
   );
 
-  if (emailButton) {
-    emailButton.textContent = "Submit Apparel Request";
-  }
+  elements.galleryNext.addEventListener(
+    "click",() => moveGallery(1)
+  );
 
-  document.addEventListener("keydown", event => {
+  elements.gallery.addEventListener("close",() => {
+    document.body.classList.remove("gallery-open");
 
-    if (elements.gallery && !elements.gallery.hidden) {
+    galleryProduct = null;
+    galleryColour = null;
 
-      if (event.key === "Escape") {
+    elements.galleryImage.removeAttribute("src");
+  });
+
+  elements.gallery.addEventListener("click",event => {
+    if (event.target === elements.gallery) {
+      const rect = elements.gallery.getBoundingClientRect();
+
+      if (
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom
+      ) {
         closeGallery();
-        return;
       }
+    }
+  });
 
+  elements.galleryImage.addEventListener("error",() => {
+    elements.galleryCaption.textContent =
+      "Product image is currently unavailable.";
+  });
+
+  /* CHECKOUT MODAL */
+
+  document.getElementById("checkout-close")
+    .addEventListener("click",closeCheckoutModal);
+
+  elements.checkout.addEventListener("close",() => {
+    document.body.classList.remove("checkout-open");
+
+    elements.checkoutFrame.src = "about:blank";
+
+    elements.checkoutFallback.href = CONFIG.formUrl;
+
+    showFeedback(
+      "If you submitted your request, look for the confirmation email. " +
+      "Your cart has been retained. You can clear it when you are finished."
+    );
+  });
+
+  /* KEYBOARD NAVIGATION */
+
+  document.addEventListener("keydown",event => {
+    if (elements.checkout.open) return;
+
+    if (elements.gallery.open) {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
         moveGallery(-1);
-        return;
       }
 
       if (event.key === "ArrowRight") {
         event.preventDefault();
         moveGallery(1);
-        return;
-      }
-
-      if (event.key === "Tab") {
-        trapFocus(elements.gallery, event);
       }
 
       return;
     }
 
-    if (elements.cartPanel.classList.contains("is-open")) {
+    if (!elements.cartPanel.classList.contains("is-open")) {
+      return;
+    }
 
-      if (event.key === "Escape") {
-        closeCart();
-      }
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeCart();
+    }
 
-      if (event.key === "Tab") {
-        trapFocus(elements.cartPanel, event);
-      }
+    if (event.key === "Tab") {
+      trapFocus(elements.cartPanel,event);
     }
   });
 }
 
-function trapFocus(container, event) {
+function trapFocus(container,event) {
   const focusable = Array.from(
     container.querySelectorAll(
       'button:not([disabled]):not([hidden]), ' +
@@ -1726,7 +1693,10 @@ function trapFocus(container, event) {
       'select:not([disabled]), ' +
       'textarea:not([disabled]), a[href]'
     )
-  ).filter(el => el.getClientRects().length);
+  ).filter(el =>
+    el.getClientRects().length &&
+    !el.closest("[hidden]")
+  );
 
   if (!focusable.length) return;
 
@@ -1736,12 +1706,7 @@ function trapFocus(container, event) {
   if (!container.contains(document.activeElement)) {
     event.preventDefault();
 
-    if (event.shiftKey) {
-      last.focus();
-    } else {
-      first.focus();
-    }
-
+    (event.shiftKey ? last : first).focus();
     return;
   }
 
