@@ -1081,14 +1081,6 @@ function renderCart() {
         : `${formatPrice(product.price)} each`
     );
 
-    const lineTotal = makeElement(
-      "p",
-      "cart-item-meta",
-      product.price === null
-        ? ""
-        : `Subtotal: ${formatPrice(product.price * item.quantity)}`
-    );
-
     const remove = makeElement(
       "button","remove-item","Remove"
     );
@@ -1099,7 +1091,7 @@ function renderCart() {
       removeFromCart(index);
     });
 
-    info.append(title,meta,price,lineTotal,remove);
+    info.append(title,meta,price,remove);
 
     const controls = makeElement(
       "div","cart-item-controls"
@@ -1144,18 +1136,6 @@ function renderCart() {
 
   elements.cartCount.textContent = total;
   elements.cartTotal.textContent = total;
-
-  const summary = document.getElementById(
-    "cart-price-summary"
-  );
-
-  summary.hidden = !cart.length;
-
-  summary.textContent = !cart.length
-    ? ""
-    : hasUnpricedItems()
-      ? `Priced items subtotal: ${formatPrice(getCartSubtotal())}. Other items require a quote.`
-      : `Estimated subtotal: ${formatPrice(getCartSubtotal())}, before tax.`;
 
   document.getElementById("clear-cart").hidden =
     !cart.length;
@@ -1375,11 +1355,6 @@ function generateRequestText() {
       `   Size: ${item.size}`,
       `   Quantity: ${item.quantity}`,
       `   Unit price: ${formatPrice(product.price)}`,
-      `   Line total: ${
-        product.price === null
-          ? "To be confirmed"
-          : formatPrice(product.price * item.quantity)
-      }`,
       ""
     );
   });
@@ -1387,7 +1362,6 @@ function generateRequestText() {
   lines.push(
     "----------------------------------------",
     `TOTAL ITEMS: ${getTotalQuantity()}`,
-    `ESTIMATED PRICED ITEMS SUBTOTAL: ${formatPrice(getCartSubtotal())}`,
     ""
   );
 
