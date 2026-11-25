@@ -9,12 +9,20 @@
 
 /* 1. CONFIGURATION */
 
+
 const CONFIG = {
-  recipientEmail: "REPLACE_WITH_YOUR_EMAIL@utoronto.ca",
-  emailSubject: "Statistical Sciences Apparel Request",
+  formUrl: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=JsKqeAMvTUuQN7RtVsVSECpVX7P7Zc5FgKM5nX6wJ7ZUNTM5VjRWQkY0V05IU1c3OUE1NDFZVTZHQy4u",
+
+  formFields: {
+    name: "rc2a924844cd3494990f703267a903efd",
+    email: "r0341de33c5b9455d99a82518ea8aeb24",
+    order: "rebd52696c4cb4f62bbf7b75d569e6ece"
+  },
+
   storageKey: "statsci-apparel-cart-v5",
   splashDuration: 2600
 };
+
 
 /* IMPORTANT:
    Retain your actual receiving email address
