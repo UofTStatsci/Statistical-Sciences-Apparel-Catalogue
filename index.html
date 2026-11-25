@@ -9,21 +9,89 @@
 
   <meta
     name="description"
-    content="Explore University of Toronto Statistical Sciences sweatshirts and jackets. Compare styles, colours and sizes, and submit an apparel request."
+    content="Explore University of Toronto Statistical Sciences sweatshirts, jackets and vests. Compare styles, colours and sizes, and request apparel."
   >
 
   <meta name="theme-color" content="#002A5C">
 
   <link rel="stylesheet" href="CSS/styles.css">
-  <script src="js/app.js?v=6" defer></script>
+  <script src="js/app.js?v=7" defer></script>
+
+  <style>
+    .hero-visual {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .hero-department-logo {
+      display: block;
+      width: min(100%, 360px);
+      height: auto;
+      object-fit: contain;
+    }
+
+    .category-navigation {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 25px 0 35px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #dce3eb;
+    }
+
+    .category-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 11px 20px;
+      border: 1px solid #002a5c;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #002a5c;
+      font-size: .9rem;
+      font-weight: 700;
+      transition: background .2s, color .2s;
+    }
+
+    .category-link:hover {
+      background: #002a5c;
+      color: #ffffff;
+    }
+
+    .category-count {
+      font-size: .75rem;
+      font-weight: 400;
+      opacity: .8;
+    }
+
+    .catalogue-category {
+      scroll-margin-top: 10px;
+    }
+
+    @media (max-width: 650px) {
+      .hero-department-logo {
+        width: min(65%, 240px);
+      }
+
+      .category-navigation {
+        gap: 8px;
+      }
+
+      .category-link {
+        flex: 1;
+        padding: 10px 12px;
+        font-size: .8rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- ==========================================
-       WHITE OPENING SPLASH SCREEN
-       Original transparent department logo
-       ========================================== -->
+  <!-- OPENING SPLASH SCREEN -->
 
   <div
     id="splash-screen"
@@ -39,9 +107,7 @@
     >
   </div>
 
-  <!-- ==========================================
-       HEADER
-       ========================================== -->
+  <!-- SITE HEADER -->
 
   <header class="site-header">
     <div class="container header-inner">
@@ -54,14 +120,17 @@
         <span class="brand-title">
           Statistical Sciences
         </span>
+
         <span class="brand-subtitle">
           UNIVERSITY OF TORONTO
         </span>
       </a>
 
       <nav class="site-nav" aria-label="Main navigation">
+
         <a href="#home">Home</a>
         <a href="#products">Products</a>
+        <a href="#how-it-works">How It Works</a>
 
         <button
           type="button"
@@ -75,6 +144,7 @@
           <span aria-hidden="true">&#128722;</span>
           <span id="cart-count" class="cart-count">0</span>
         </button>
+
       </nav>
 
     </div>
@@ -82,69 +152,74 @@
 
   <main id="home">
 
-    <!-- ==========================================
-         HERO
-         ========================================== -->
+    <!-- HERO SECTION -->
 
     <section class="hero" aria-labelledby="hero-title">
+
       <div class="container hero-content">
 
         <div class="hero-text">
+
           <p class="eyebrow">
             DEPARTMENT OF STATISTICAL SCIENCES
           </p>
 
           <h1 id="hero-title">
+            Statistical Sciences<br>
             Apparel Catalogue
           </h1>
 
           <p class="hero-description">
             Show your StatSci pride with apparel featuring
             the Department of Statistical Sciences seal.
-            Explore our collection of sweatshirts and jackets,
-            compare available styles, and select your preferred
-            colours, sizes and quantities.
+            Explore our collection of sweatshirts, jackets
+            and vests, compare available styles, and select
+            your preferred colours, sizes and quantities.
           </p>
 
           <a href="#products" class="button button-primary">
             Explore the Collection
           </a>
+
         </div>
 
-        <div class="hero-visual" aria-hidden="true">
-  <img
-    src="images/statsci-circular-logo.png"
-    alt=""
-    class="hero-department-logo"
-    width="360"
-    height="360"
-  >
-</div>
+        <div class="hero-visual">
+
+          <img
+            src="images/statsci-circular-logo.png"
+            alt="University of Toronto Department of Statistical Sciences seal"
+            class="hero-department-logo"
+            width="360"
+            height="360"
+          >
+
         </div>
 
       </div>
+
     </section>
 
-    <!-- ==========================================
-         PRICING INFORMATION
-         ========================================== -->
+    <!-- APPAREL REQUEST INFORMATION -->
 
     <section
       class="notice-section"
       aria-labelledby="request-info-title"
     >
+
       <div class="container">
 
         <div class="notice">
+
           <span class="notice-icon" aria-hidden="true">i</span>
 
           <div class="notice-content">
+
             <h2 id="request-info-title">
               Apparel Request Information
             </h2>
 
             <p>
-              Prices shown are estimates based on previous supplier
+              Prices shown are estimates based on supplier
               quotations and are provided for reference only.
               All prices are in Canadian dollars, before
               applicable taxes.
@@ -159,55 +234,103 @@
 
             <p>
               <strong>
-                Submitting an apparel request does not constitute
-                a purchase or commitment to buy.
+                Submitting an apparel request does not
+                constitute a purchase or commitment to buy.
               </strong>
             </p>
+
           </div>
+
         </div>
 
       </div>
+
     </section>
 
-    <!-- ==========================================
-         PRODUCT CATALOGUE
-         ========================================== -->
+    <!-- PRODUCT CATALOGUE -->
 
     <section
       id="products"
       class="products-section"
       aria-labelledby="products-title"
     >
+
       <div class="container">
 
         <div class="section-heading">
+
           <div>
             <p class="eyebrow">THE COLLECTION</p>
             <h2 id="products-title">Available Apparel</h2>
+          </div>
+
+          <p class="section-description">
+            Explore the collection and build your
+            personalized apparel request.
+          </p>
+
+        </div>
 
         <div class="catalogue-introduction">
+
           <p>
-            Explore our collection of department-branded apparel.
-            Select a product's colour, size and quantity, then
-            add it to your request.
+            Browse our selection of department-branded
+            sweatshirts, jackets and vests. Choose your
+            preferred options and add them to your request.
           </p>
 
           <p>
             <strong>Want a closer look?</strong>
-            Click any available product photograph to open
-            a larger view. You can close the image using
-            the X button or the Escape key.
+            Click any product photograph to view an enlarged
+            image and inspect the garment in greater detail.
           </p>
 
           <p>
-            You can request multiple products in different
-            colours and sizes in a single submission.
+            Sweatshirts and selected vests are available in
+            multiple colours. Jackets are offered in the
+            designated colour shown. Vest photographs are
+            representative and do not change when a different
+            colour is selected.
           </p>
+
         </div>
 
+        <!-- CATEGORY NAVIGATION -->
+
+        <nav
+          class="category-navigation"
+          aria-label="Apparel categories"
+        >
+
+          <a
+            href="#category-sweatshirts"
+            class="category-link"
+          >
+            Sweatshirts
+            <span class="category-count">(1)</span>
+          </a>
+
+          <a
+            href="#category-jackets"
+            class="category-link"
+          >
+            Jackets
+            <span class="category-count">(20)</span>
+          </a>
+
+          <a
+            href="#category-vests"
+            class="category-link"
+          >
+            Vests
+            <span class="category-count">(7)</span>
+          </a>
+
+        </nav>
+
         <!--
-          Product cards are generated by js/app.js.
-          All 21 products appear here.
+          Product cards and category headings
+          are generated automatically by app.js.
         -->
 
         <div
@@ -215,84 +338,110 @@
           class="product-grid"
           aria-live="polite"
         >
+
           <p class="loading-products">
             Loading apparel catalogue...
           </p>
+
         </div>
 
+        <noscript>
+          <p>
+            JavaScript must be enabled to browse the
+            apparel catalogue and submit a request.
+          </p>
+        </noscript>
+
       </div>
+
     </section>
 
-    <!-- ==========================================
-         HOW IT WORKS
-         ========================================== -->
+    <!-- HOW IT WORKS -->
 
     <section
       id="how-it-works"
       class="how-section"
       aria-labelledby="how-title"
     >
+
       <div class="container">
 
         <div class="section-heading">
+
           <div>
             <p class="eyebrow">ORDERING PROCESS</p>
             <h2 id="how-title">How It Works</h2>
           </div>
+
         </div>
 
         <div class="steps-grid">
 
           <article class="step-card">
+
             <span class="step-number">01</span>
+
             <h3>Explore Apparel</h3>
+
             <p>
-              Browse available sweatshirts and jackets.
+              Browse our sweatshirts, jackets and vests.
               Click product photographs to inspect
-              larger views.
+              enlarged views.
             </p>
+
           </article>
 
           <article class="step-card">
+
             <span class="step-number">02</span>
+
             <h3>Build Your Request</h3>
+
             <p>
-              Choose colours, sizes and quantities.
-              Add multiple combinations to your
-              request cart.
+              Select your preferred colours, sizes and
+              quantities. Add multiple products to
+              your request cart.
             </p>
+
           </article>
 
           <article class="step-card">
+
             <span class="step-number">03</span>
+
             <h3>Email Your Selections</h3>
+
             <p>
-              Review your items, enter your contact
-              information, and open an itemized
-              email ready to send.
+              Review your selections and enter your contact
+              information. Open your itemized request in
+              Outlook and send it to the department.
             </p>
+
           </article>
 
           <article class="step-card">
+
             <span class="step-number">04</span>
+
             <h3>Receive Confirmation</h3>
+
             <p>
-              The department will coordinate with
-              the supplier to confirm pricing,
+              The department will coordinate with the
+              supplier to confirm final pricing,
               availability and next steps.
             </p>
+
           </article>
 
         </div>
 
       </div>
+
     </section>
 
   </main>
 
-  <!-- ==========================================
-       CART OVERLAY
-       ========================================== -->
+  <!-- CART OVERLAY -->
 
   <div
     id="cart-overlay"
@@ -300,9 +449,7 @@
     hidden
   ></div>
 
-  <!-- ==========================================
-       REQUEST CART
-       ========================================== -->
+  <!-- REQUEST CART -->
 
   <aside
     id="cart-panel"
@@ -315,9 +462,15 @@
   >
 
     <div class="cart-header">
+
       <div>
+
         <p class="eyebrow">YOUR SELECTIONS</p>
-        <h2 id="cart-title">Your Apparel Request</h2>
+
+        <h2 id="cart-title">
+          Your Apparel Request
+        </h2>
+
       </div>
 
       <button
@@ -328,39 +481,53 @@
       >
         &times;
       </button>
+
     </div>
 
     <div class="cart-content">
 
-      <!-- Cart items populated by JavaScript -->
+      <!-- CART ITEMS -->
 
       <div
         id="cart-items"
         class="cart-items"
         aria-live="polite"
       >
+
         <p class="empty-cart">
           Your request is currently empty.
         </p>
+
       </div>
 
       <div class="cart-summary">
+
         <span>Total Items</span>
+
         <strong id="cart-total-items">0</strong>
+
       </div>
 
-      <!-- Estimated subtotal inserted by JavaScript -->
+      <!--
+        Estimated price summary is inserted
+        automatically by app.js.
+      -->
+
+      <!-- CUSTOMER INFORMATION -->
 
       <form id="request-form">
 
         <div class="form-section">
+
           <h3>Your Information</h3>
 
           <div class="form-grid">
 
             <div class="form-field">
+
               <label for="customer-name">
-                Full Name <span class="required">*</span>
+                Full Name
+                <span class="required">*</span>
               </label>
 
               <input
@@ -371,9 +538,11 @@
                 placeholder="Your full name"
                 required
               >
+
             </div>
 
             <div class="form-field">
+
               <label for="customer-email">
                 UofT Email Address
                 <span class="required">*</span>
@@ -387,9 +556,11 @@
                 placeholder="name@utoronto.ca"
                 required
               >
+
             </div>
 
             <div class="form-field form-field-full">
+
               <label for="customer-affiliation">
                 Department Affiliation
                 <span class="required">*</span>
@@ -400,23 +571,41 @@
                 name="customer-affiliation"
                 required
               >
-                <option value="">Select an option</option>
-                <option value="Faculty">Faculty</option>
-                <option value="Staff">Staff</option>
+
+                <option value="">
+                  Select an option
+                </option>
+
+                <option value="Faculty">
+                  Faculty
+                </option>
+
+                <option value="Staff">
+                  Staff
+                </option>
+
                 <option value="Graduate Student">
                   Graduate Student
                 </option>
+
                 <option value="Undergraduate Student">
                   Undergraduate Student
                 </option>
+
                 <option value="Postdoctoral Researcher">
                   Postdoctoral Researcher
                 </option>
-                <option value="Other">Other</option>
+
+                <option value="Other">
+                  Other
+                </option>
+
               </select>
+
             </div>
 
             <div class="form-field form-field-full">
+
               <label for="customer-notes">
                 Additional Notes (Optional)
               </label>
@@ -427,36 +616,49 @@
                 rows="3"
                 placeholder="Any additional information about your apparel request..."
               ></textarea>
+
             </div>
 
           </div>
+
         </div>
 
-        <!-- ======================================
-             REQUEST SUBMISSION
-             ====================================== -->
+        <!-- REQUEST SUBMISSION -->
 
         <div class="submit-section">
+
           <h3>Send Your Request</h3>
 
           <p>
-            Please review all selected products,
-            colours, sizes and quantities before
-            sending your request.
+            Please review all selected products, colours,
+            sizes and quantities before sending your request.
           </p>
 
           <p>
-            Prices are estimates only. The department
-            will confirm final pricing and availability
-            before any purchase is arranged.
+            Prices are estimates only. The department will
+            confirm final pricing and availability before
+            any purchase is arranged.
           </p>
 
           <p class="submission-note">
-            Selecting <strong>Email My Request</strong>
-            will open your email application with a
-            prepared message containing your selections.
-            You must click <strong>Send</strong> in your
-            email application to complete your request.
+
+            Selecting
+            <strong>Open Request in Outlook</strong>
+            will open Outlook in a new browser tab with
+            your itemized apparel request.
+
+            You may be prompted to sign in using your
+            University of Toronto account.
+
+            You must click <strong>Send</strong> in Outlook
+            to complete your request.
+
+          </p>
+
+          <p>
+            If Outlook does not open, select
+            <strong>Copy Request Details</strong>
+            and paste your request into a new email.
           </p>
 
           <div class="submit-actions">
@@ -466,7 +668,7 @@
               id="email-request"
               class="button button-primary"
             >
-              Email My Request
+              Open Request in Outlook
             </button>
 
             <button
@@ -491,34 +693,37 @@
       </form>
 
     </div>
+
   </aside>
 
-  <!-- ==========================================
-       FOOTER
-       ========================================== -->
+  <!-- SITE FOOTER -->
 
   <footer class="site-footer">
+
     <div class="container footer-inner">
 
       <div class="footer-brand">
+
         <strong>
           Department of Statistical Sciences
         </strong>
+
         <span>University of Toronto</span>
+
       </div>
 
       <div class="footer-information">
+
         <p>
-          This apparel catalogue is intended for
-          members of the University of Toronto
-          Department of Statistical Sciences.
+          This apparel catalogue is intended for members
+          of the University of Toronto Department of
+          Statistical Sciences.
         </p>
 
         <p>
-          Product images are illustrative.
-          Final merchandise, decoration, pricing
-          and availability are subject to
-          supplier confirmation.
+          Product images are illustrative. Final merchandise,
+          decoration, pricing and availability are subject
+          to supplier confirmation.
         </p>
 
         <p>
@@ -526,14 +731,16 @@
           <span id="current-year">2026</span>
           University of Toronto.
         </p>
+
       </div>
 
     </div>
+
   </footer>
 
   <!--
-    The full-screen image gallery is generated
-    automatically by js/app.js.
+    The enlarged product image viewer is
+    generated automatically by app.js.
   -->
 
 </body>
