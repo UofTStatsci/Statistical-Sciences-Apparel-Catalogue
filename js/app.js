@@ -4,7 +4,7 @@
 /* ==================================================
    STATISTICAL SCIENCES APPAREL CATALOGUE
    University of Toronto
-   Version 10 — Integrated Microsoft Forms Checkout
+   Version 13 — Billing Information Checkout
    ================================================== */
 
 /* 1. CONFIGURATION */
@@ -286,7 +286,7 @@ const PRODUCTS = [
     sku: "LQO00060",
     category: "Jackets",
     name: "Clique Equinox Insulated Softshell Women's Hooded Jacket",
-    description: "Insulated softshell with water-resistant exterior and adjustable hood.",
+    description: "Insulated softshell with water-resistant exterior, adjustable hood and secure pockets.",
     price: 90,
     image: "images/clique-equinox-women.webp",
     colour: "Dark Navy",
@@ -449,10 +449,15 @@ function initialize() {
   setupEvents();
 
   const year = document.getElementById("current-year");
-  if (year) year.textContent = new Date().getFullYear();
+
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
 }
 
-/* 7. SPLASH SCREEN */
+/* ==================================================
+   7. SPLASH SCREEN
+   ================================================== */
 
 function setupSplash() {
   if (!elements.splash) return;
@@ -467,7 +472,9 @@ function setupSplash() {
   );
 }
 
-/* 8. HELPERS */
+/* ==================================================
+   8. HELPERS
+   ================================================== */
 
 function makeElement(tag, className = "", text) {
   const el = document.createElement(tag);
@@ -629,6 +636,7 @@ function createProductCard(product) {
     const image = document.createElement("img");
 
     image.loading = "lazy";
+
     image.alt = isVest
       ? `${product.name} — representative image`
       : `${product.name} — ${selectedColour}`;
@@ -1143,6 +1151,8 @@ function renderCart() {
 
 /* ==================================================
    13. CART STORAGE
+   Only product selections are stored.
+   No billing or contact information is stored.
    ================================================== */
 
 function saveCart() {
@@ -1272,7 +1282,7 @@ function closeCart() {
 }
 
 /* ==================================================
-   15. CUSTOMER INFORMATION
+   15. CUSTOMER AND BILLING INFORMATION
    ================================================== */
 
 function getCustomerInformation() {
@@ -1289,6 +1299,36 @@ function getCustomerInformation() {
       "customer-affiliation"
     ).value,
 
+    billing: {
+      street: document.getElementById(
+        "billing-street"
+      )?.value.trim() || "",
+
+      unit: document.getElementById(
+        "billing-unit"
+      )?.value.trim() || "",
+
+      city: document.getElementById(
+        "billing-city"
+      )?.value.trim() || "",
+
+      province: document.getElementById(
+        "billing-province"
+      )?.value.trim() || "",
+
+      postal: document.getElementById(
+        "billing-postal"
+      )?.value.trim() || "",
+
+      country: document.getElementById(
+        "billing-country"
+      )?.value.trim() || "",
+
+      phone: document.getElementById(
+        "billing-phone"
+      )?.value.trim() || ""
+    },
+
     notes: document.getElementById(
       "customer-notes"
     ).value.trim()
@@ -1299,6 +1339,8 @@ function showFeedback(message) {
   elements.feedback.textContent = message;
 }
 
+/* CONTACT AND BILLING VALIDATION */
+
 function validateRequest() {
   if (!cart.length) {
     showFeedback("Please add at least one item.");
@@ -1307,14 +1349,55 @@ function validateRequest() {
 
   if (!elements.requestForm.reportValidity()) {
     showFeedback(
-      "Please complete the required contact information."
+      "Please complete the required contact and billing information."
     );
     return false;
   }
 
   if (!getCustomerInformation().name) {
     showFeedback("Please enter your full name.");
-    document.getElementById("customer-name").focus();
+
+    document.getElementById(
+      "customer-name"
+    ).focus();
+
+    return false;
+  }
+
+  const billing = getCustomerInformation().billing;
+
+  const requiredBilling = {
+    street: "billing-street",
+    city: "billing-city",
+    province: "billing-province",
+    postal: "billing-postal",
+    country: "billing-country",
+    phone: "billing-phone"
+  };
+
+  for (const [key,id] of Object.entries(requiredBilling)) {
+    if (!billing[key]) {
+      showFeedback(
+        "Please complete all required billing fields."
+      );
+
+      document.getElementById(id)?.focus();
+
+      return false;
+    }
+  }
+
+  const digits = billing.phone.replace(/\D/g,"");
+
+  if (digits.length < 7 || digits.length > 15) {
+    showFeedback(
+      "Please enter a valid phone number."
+    );
+
+    document.getElementById(
+      "billing-phone"
+    )?.focus();
+
     return false;
   }
 
@@ -1323,6 +1406,8 @@ function validateRequest() {
 
 /* ==================================================
    16. GENERATE ITEMIZED REQUEST
+   Includes customer and billing information.
+   No calculated monetary subtotals.
    ================================================== */
 
 function generateRequestText() {
@@ -1337,6 +1422,16 @@ function generateRequestText() {
     `Name: ${customer.name}`,
     `Email: ${customer.email}`,
     `Affiliation: ${customer.affiliation}`,
+    "",
+    "BILLING INFORMATION",
+    "----------------------------------------",
+    `Street Address: ${customer.billing.street}`,
+    `Apartment / Unit: ${customer.billing.unit || "Not provided"}`,
+    `City: ${customer.billing.city}`,
+    `Province / Territory: ${customer.billing.province}`,
+    `Postal Code: ${customer.billing.postal}`,
+    `Country: ${customer.billing.country}`,
+    `Phone Number: ${customer.billing.phone}`,
     "",
     "REQUESTED ITEMS",
     "----------------------------------------"
@@ -1612,45 +1707,52 @@ function setupEvents() {
   document.getElementById("checkout-close")
     .addEventListener("click",closeCheckoutModal);
 
- 
-elements.checkout.addEventListener("close", () => {
-  document.body.classList.remove("checkout-open");
+  /* CLEAR CART AFTER CONFIRMED SUBMISSION */
 
-  elements.checkoutFrame.src = "about:blank";
-  elements.checkoutFallback.href = CONFIG.formUrl;
+  elements.checkout.addEventListener("close", () => {
+    document.body.classList.remove("checkout-open");
 
-  const submitted = window.confirm(
-    "Have you successfully submitted your apparel request?\n\n" +
-    "Select OK to clear your cart, or Cancel to keep your selections."
-  );
+    elements.checkoutFrame.src = "about:blank";
 
-  if (submitted) {
-    cart = [];
+    elements.checkoutFallback.href = CONFIG.formUrl;
 
-    saveCart();
-    renderCart();
-
-    elements.requestForm.reset();
-
-    document.getElementById(
-      "request-copy-fallback"
-    )?.remove();
-
-    document.getElementById(
-      "manual-form-link"
-    )?.remove();
-
-    closeCart();
-
-    showFeedback("");
-  } else {
-    showFeedback(
-      "Your selections have been retained. " +
-      "You can return to checkout when you are ready."
+    const submitted = window.confirm(
+      "Have you successfully submitted your apparel request?\n\n" +
+      "Select OK to clear your cart, or Cancel to keep your selections."
     );
-  }
-});
 
+    if (submitted) {
+      cart = [];
+
+      saveCart();
+      renderCart();
+
+      /*
+        Reset all customer information,
+        billing information and additional notes.
+      */
+
+      elements.requestForm.reset();
+
+      document.getElementById(
+        "request-copy-fallback"
+      )?.remove();
+
+      document.getElementById(
+        "manual-form-link"
+      )?.remove();
+
+      closeCart();
+
+      showFeedback("");
+
+    } else {
+      showFeedback(
+        "Your selections have been retained. " +
+        "You can return to checkout when you are ready."
+      );
+    }
+  });
 
   /* KEYBOARD NAVIGATION */
 
