@@ -38,11 +38,11 @@
 
   <link
     rel="stylesheet"
-    href="CSS/styles.css?v=10"
+    href="CSS/styles.css?v=13"
   >
 
   <script
-    src="js/app.js?v=12"
+    src="js/app.js?v=13"
     defer
   ></script>
 
@@ -270,7 +270,10 @@
               Available Apparel
             </h2>
 
-         
+          </div>
+
+        </div>
+
         <div class="catalogue-introduction">
 
           <p>
@@ -445,8 +448,8 @@
 
             <p>
               Review your selections and enter your
-              contact information. Complete your
-              submission through the pre-populated
+              contact and billing information. Complete
+              your submission through the pre-populated
               Microsoft Forms checkout.
             </p>
 
@@ -543,6 +546,8 @@
 
       </div>
 
+      <!-- TOTAL QUANTITY ONLY -->
+
       <div class="cart-summary">
 
         <span>Total Items</span>
@@ -566,13 +571,15 @@
            CUSTOMER INFORMATION
            ====================================== -->
 
-      <form id="request-form">
+      <form id="request-form" method="post">
 
         <div class="form-section">
 
           <h3>Your Information</h3>
 
           <div class="form-grid">
+
+            <!-- FULL NAME -->
 
             <div class="form-field">
 
@@ -596,6 +603,8 @@
 
             </div>
 
+            <!-- EMAIL ADDRESS -->
+
             <div class="form-field">
 
               <label for="customer-email">
@@ -617,6 +626,8 @@
               >
 
             </div>
+
+            <!-- DEPARTMENT AFFILIATION -->
 
             <div class="form-field form-field-full">
 
@@ -666,25 +677,337 @@
 
             </div>
 
+          </div>
+
+        </div>
+
+        <!-- ======================================
+             BILLING INFORMATION
+             ====================================== -->
+
+        <section
+          class="billing-section"
+          aria-labelledby="billing-title"
+          aria-describedby="billing-description billing-privacy"
+        >
+
+          <h3 id="billing-title">
+            Billing Information
+          </h3>
+
+          <p
+            id="billing-description"
+            class="billing-description"
+          >
+            Please provide your billing information
+            to facilitate order processing through
+            the University of Toronto Bookstore.
+          </p>
+
+          <p
+            id="billing-privacy"
+            class="billing-description"
+          >
+            Your billing address and phone number
+            will be transferred to Microsoft Forms
+            through a prefilled link. This information
+            may remain in browser history or service logs
+            and will be included in your submitted request
+            and automated confirmation email.
+          </p>
+
+          <div class="billing-grid">
+
+            <!-- STREET ADDRESS -->
+
             <div class="form-field form-field-full">
 
-              <label for="customer-notes">
-                Additional Notes (Optional)
+              <label for="billing-street">
+
+                Street Address
+
+                <span class="required">*</span>
+
               </label>
 
-              <textarea
-                id="customer-notes"
-                name="customer-notes"
-                rows="3"
-                maxlength="1000"
-                placeholder="Any additional information about your apparel request..."
-              ></textarea>
+              <input
+                type="text"
+                id="billing-street"
+                name="billing-street"
+                autocomplete="billing address-line1"
+                placeholder="Street number and street name"
+                maxlength="200"
+                required
+              >
+
+            </div>
+
+            <!-- APARTMENT / UNIT / SUITE -->
+
+            <div class="form-field form-field-full">
+
+              <label for="billing-unit">
+
+                Apartment / Unit / Suite
+
+                <span class="optional-label">
+                  (Optional)
+                </span>
+
+              </label>
+
+              <input
+                type="text"
+                id="billing-unit"
+                name="billing-unit"
+                autocomplete="billing address-line2"
+                placeholder="Apartment, unit or suite"
+                maxlength="50"
+              >
+
+            </div>
+
+            <!-- CITY -->
+
+            <div class="form-field">
+
+              <label for="billing-city">
+
+                City
+
+                <span class="required">*</span>
+
+              </label>
+
+              <input
+                type="text"
+                id="billing-city"
+                name="billing-city"
+                autocomplete="billing address-level2"
+                placeholder="City"
+                maxlength="100"
+                required
+              >
+
+            </div>
+
+            <!-- PROVINCE / TERRITORY -->
+
+            <div class="form-field">
+
+              <label for="billing-province">
+
+                Province / Territory
+
+                <span class="required">*</span>
+
+              </label>
+
+              <select
+                id="billing-province"
+                name="billing-province"
+                autocomplete="billing address-level1"
+                required
+              >
+
+                <option value="">
+                  Select province
+                </option>
+
+                <option value="Ontario" selected>
+                  Ontario
+                </option>
+
+                <option value="Alberta">
+                  Alberta
+                </option>
+
+                <option value="British Columbia">
+                  British Columbia
+                </option>
+
+                <option value="Manitoba">
+                  Manitoba
+                </option>
+
+                <option value="New Brunswick">
+                  New Brunswick
+                </option>
+
+                <option value="Newfoundland and Labrador">
+                  Newfoundland and Labrador
+                </option>
+
+                <option value="Nova Scotia">
+                  Nova Scotia
+                </option>
+
+                <option value="Prince Edward Island">
+                  Prince Edward Island
+                </option>
+
+                <option value="Quebec">
+                  Quebec
+                </option>
+
+                <option value="Saskatchewan">
+                  Saskatchewan
+                </option>
+
+                <option value="Northwest Territories">
+                  Northwest Territories
+                </option>
+
+                <option value="Nunavut">
+                  Nunavut
+                </option>
+
+                <option value="Yukon">
+                  Yukon
+                </option>
+
+                <option value="Other">
+                  Other
+                </option>
+
+              </select>
+
+            </div>
+
+            <!-- POSTAL CODE -->
+
+            <div class="form-field">
+
+              <label for="billing-postal">
+
+                Postal Code
+
+                <span class="required">*</span>
+
+              </label>
+
+              <input
+                type="text"
+                id="billing-postal"
+                name="billing-postal"
+                autocomplete="billing postal-code"
+                autocapitalize="characters"
+                spellcheck="false"
+                placeholder="A1A 1A1"
+                maxlength="15"
+                required
+              >
+
+            </div>
+
+            <!-- COUNTRY -->
+
+            <div class="form-field">
+
+              <label for="billing-country">
+
+                Country
+
+                <span class="required">*</span>
+
+              </label>
+
+              <input
+                type="text"
+                id="billing-country"
+                name="billing-country"
+                autocomplete="billing country-name"
+                value="Canada"
+                placeholder="Country"
+                maxlength="100"
+                required
+              >
+
+            </div>
+
+            <!-- PHONE NUMBER -->
+
+            <div class="form-field form-field-full">
+
+              <label for="billing-phone">
+
+                Phone Number
+
+                <span class="required">*</span>
+
+              </label>
+
+              <input
+                type="tel"
+                id="billing-phone"
+                name="billing-phone"
+                autocomplete="billing tel"
+                inputmode="tel"
+                placeholder="(416) 555-0123"
+                maxlength="30"
+                required
+              >
+
+              <span class="field-hint">
+                Please include your area code.
+              </span>
 
             </div>
 
           </div>
 
-        </div>
+          <!-- BILLING INFORMATION NOTICE -->
+
+          <div class="billing-note">
+
+            <p>
+              <strong>No payment is required at this stage.</strong>
+              Billing information is collected for apparel
+              order processing. Final pricing and availability
+              will be confirmed before any purchase is arranged.
+              Do not provide credit card or banking information.
+            </p>
+
+          </div>
+
+        </section>
+
+        <!-- ======================================
+             ADDITIONAL NOTES
+             ====================================== -->
+
+        <section
+          class="notes-section"
+          aria-labelledby="notes-title"
+        >
+
+          <h3 id="notes-title">
+            Additional Notes
+          </h3>
+
+          <div class="form-field form-field-full">
+
+            <label for="customer-notes">
+
+              Order Notes
+
+              <span class="optional-label">
+                (Optional)
+              </span>
+
+            </label>
+
+            <textarea
+              id="customer-notes"
+              name="customer-notes"
+              rows="3"
+              maxlength="1000"
+              placeholder="Any additional information about your apparel request..."
+            ></textarea>
+
+          </div>
+
+        </section>
 
         <!-- ======================================
              REQUEST SUBMISSION
@@ -696,8 +1019,9 @@
 
           <p>
             Please review all selected products,
-            colours, sizes and quantities before
-            submitting your apparel request.
+            colours, sizes and quantities, along with
+            your contact and billing information,
+            before submitting your apparel request.
           </p>
 
           <p>
@@ -709,12 +1033,19 @@
           <div class="submission-note">
 
             <p>
+
               <strong>
                 Complete your submission
               </strong>
+
             </p>
 
             <ol class="submission-steps">
+
+              <li>
+                Complete all required contact
+                and billing information above.
+              </li>
 
               <li>
                 Select
@@ -733,9 +1064,17 @@
               </li>
 
               <li>
-                Review your information and click
-                <strong>Submit</strong>
+                Review your apparel selections,
+                contact and billing information,
+                then click <strong>Submit</strong>
                 within Microsoft Forms.
+              </li>
+
+              <li>
+                Once you have successfully submitted
+                your request, close the checkout window
+                and confirm that you wish to clear
+                your cart.
               </li>
 
             </ol>
@@ -765,13 +1104,20 @@
             <strong>Copy Request Details</strong>.
           </p>
 
+          <!-- PRIVACY NOTICE -->
+
           <p class="submission-privacy">
             Apparel requests are processed through
-            Microsoft Forms. Your information is
-            transferred using a prefilled link and
-            may remain in browser history or logs.
-            Please do not include sensitive personal
-            information in the notes field.
+            Microsoft Forms. Your contact information,
+            billing information and apparel selections
+            are transferred using a prefilled link and
+            may remain in browser history or service logs.
+            Submitted information is also included in
+            departmental order records and automated emails.
+            The catalogue does not save contact or billing
+            information in its local cart storage.
+            Please do not include payment details or other
+            sensitive personal information in the notes field.
           </p>
 
           <div class="submit-actions">
@@ -974,7 +1320,8 @@
 
     <!--
       Microsoft Forms URL is populated dynamically
-      with the customer's complete apparel request.
+      with the customer's complete apparel request,
+      including contact and billing information.
     -->
 
     <iframe
