@@ -2,7 +2,7 @@
 /* ==================================================
    STATISTICAL SCIENCES APPAREL CATALOGUE
    University of Toronto
-   Version 10 — Integrated Checkout
+   Version 13 — Billing Information Checkout
    ================================================== */
 
 /* 1. DESIGN SYSTEM */
@@ -1044,6 +1044,8 @@ img {
   justify-content: space-between;
   gap: 16px;
 
+  flex-shrink: 0;
+
   padding: 25px 29px;
 
   border-bottom: 1px solid var(--border);
@@ -1084,6 +1086,7 @@ img {
   min-height: 0;
 
   overflow-y: auto;
+  overscroll-behavior: contain;
 
   padding: 25px 29px 38px;
 }
@@ -1199,18 +1202,6 @@ img {
   border-bottom: 1px solid var(--border);
 }
 
-.cart-price-summary {
-  padding: 14px 16px;
-
-  border-radius: 6px;
-
-  background: var(--light);
-  color: var(--blue);
-
-  font-size: .9rem;
-  font-weight: 700;
-}
-
 /* ==================================================
    15. CUSTOMER INFORMATION
    ================================================== */
@@ -1220,6 +1211,8 @@ img {
 }
 
 .form-section h3,
+.billing-section h3,
+.notes-section h3,
 .submit-section h3 {
   margin: 0 0 18px;
 
@@ -1237,6 +1230,8 @@ img {
   display: flex;
   flex-direction: column;
   gap: 7px;
+
+  min-width: 0;
 }
 
 .form-field-full {
@@ -1252,10 +1247,19 @@ img {
   color: #a12435;
 }
 
+.optional-label {
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 400;
+}
+
 .form-field input,
 .form-field select,
 .form-field textarea {
   width: 100%;
+  min-width: 0;
+  min-height: 44px;
+
   padding: 11px 12px;
 
   border: 1px solid #c8d3e0;
@@ -1265,6 +1269,20 @@ img {
   background: #ffffff;
 
   font-size: .9rem;
+
+  transition: border-color .2s,box-shadow .2s;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--blue);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #718096;
+  opacity: 1;
 }
 
 .form-field textarea {
@@ -1273,7 +1291,119 @@ img {
 }
 
 /* ==================================================
-   16. REQUEST SUBMISSION
+   16. BILLING INFORMATION
+   ================================================== */
+
+.billing-section {
+  margin-top: 28px;
+  padding-top: 25px;
+
+  border-top: 1px solid var(--border);
+}
+
+.billing-section h3 {
+  margin-bottom: 8px;
+}
+
+.billing-description {
+  margin: 0 0 20px;
+
+  color: var(--muted);
+
+  font-size: .83rem;
+  line-height: 1.55;
+}
+
+.billing-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+
+  gap: 17px;
+}
+
+.billing-grid .form-field-full {
+  grid-column: 1 / -1;
+}
+
+/* Billing fields */
+
+#billing-street,
+#billing-unit,
+#billing-city,
+#billing-province,
+#billing-postal,
+#billing-country,
+#billing-phone {
+  width: 100%;
+  min-height: 44px;
+}
+
+#billing-postal {
+  text-transform: uppercase;
+}
+
+#billing-phone {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Field helper text */
+
+.field-hint {
+  display: block;
+
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: .73rem;
+  line-height: 1.45;
+}
+
+/* Billing information notice */
+
+.billing-note {
+  margin-top: 18px;
+  padding: 13px 15px;
+
+  border: 1px solid var(--border);
+  border-radius: 6px;
+
+  background: var(--light);
+  color: var(--muted);
+
+  font-size: .78rem;
+  line-height: 1.55;
+}
+
+.billing-note p {
+  margin: 0;
+}
+
+.billing-note strong {
+  color: var(--blue);
+}
+
+/* ==================================================
+   17. ADDITIONAL NOTES
+   ================================================== */
+
+.notes-section {
+  margin-top: 27px;
+  padding-top: 24px;
+
+  border-top: 1px solid var(--border);
+}
+
+.notes-section h3 {
+  margin-bottom: 12px;
+}
+
+.notes-section textarea {
+  min-height: 95px;
+}
+
+/* ==================================================
+   18. REQUEST SUBMISSION
    ================================================== */
 
 .submit-section {
@@ -1316,6 +1446,7 @@ img {
 
 .submission-privacy {
   font-size: .78rem !important;
+  line-height: 1.55;
 }
 
 .submit-actions {
@@ -1332,6 +1463,8 @@ img {
 
   color: var(--blue) !important;
   font-weight: 700;
+
+  overflow-wrap: anywhere;
 }
 
 .request-copy-fallback {
@@ -1351,7 +1484,7 @@ img {
 }
 
 /* ==================================================
-   17. EMBEDDED MICROSOFT FORMS CHECKOUT
+   19. EMBEDDED MICROSOFT FORMS CHECKOUT
    ================================================== */
 
 .checkout-panel {
@@ -1508,7 +1641,7 @@ img {
 }
 
 /* ==================================================
-   18. SITE FOOTER
+   20. SITE FOOTER
    ================================================== */
 
 .site-footer {
@@ -1551,7 +1684,7 @@ img {
 }
 
 /* ==================================================
-   19. TABLET
+   21. TABLET
    ================================================== */
 
 @media (max-width: 950px) {
@@ -1569,7 +1702,7 @@ img {
 }
 
 /* ==================================================
-   20. MOBILE
+   22. MOBILE
    ================================================== */
 
 @media (max-width: 650px) {
@@ -1685,6 +1818,7 @@ img {
   }
 
   .form-grid,
+  .billing-grid,
   .submit-actions {
     grid-template-columns: 1fr;
   }
@@ -1693,6 +1827,28 @@ img {
   .form-field select,
   .form-field textarea {
     font-size: 16px;
+  }
+
+  .billing-section {
+    margin-top: 25px;
+    padding-top: 22px;
+  }
+
+  .billing-grid {
+    gap: 15px;
+  }
+
+  .billing-description {
+    font-size: .82rem;
+  }
+
+  .billing-note {
+    padding: 12px;
+  }
+
+  .notes-section {
+    margin-top: 25px;
+    padding-top: 22px;
   }
 
   .gallery-panel {
@@ -1770,7 +1926,7 @@ img {
 }
 
 /* ==================================================
-   21. REDUCED MOTION
+   23. REDUCED MOTION
    ================================================== */
 
 @media (prefers-reduced-motion: reduce) {
